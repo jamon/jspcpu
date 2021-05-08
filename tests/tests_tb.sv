@@ -282,46 +282,6 @@ module tests_tb();
         xfer_assert_addr = 1'b1;
         #10 a_assert_main = 1'b1;
 
-
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-        // #10
-        // test_main_out = 8'h11;
-        // test_main_en = 1'b1;
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-        // #10 xfer_loadhigh_main = 1'b0;
-        // #10 xfer_loadhigh_main = 1'b1;
-
-        // #10
-        // test_main_out = 8'h22;
-        // test_main_en = 1'b1;
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-        // #10 xfer_loadhigh_main = 1'b0;
-        // #10 xfer_loadhigh_main = 1'b1;
-
-        // #10 xfer_assert_xfer = 1'b0;
-        // #0 $display("xfer bus: %h", xfer_xfer_out);
-
-        // #10 test_main_en = 1'b0;
-
-        // #10 xfer_asserthigh_main = 1'b0;
-        // #10 xfer_asserthigh_main = 1'b1;
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-
-        // #10 xfer_load_xfer = 1'b0;
-        // #10 xfer_load_xfer = 1'b0;
-        // #0 $display("xfer bus: %h", xfer_xfer_out);
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-
-        // #10 xfer_asserthigh_main = 1'b0;
-        // #10 xfer_asserthigh_main = 1'b1;
-        // #0 $display("main bus (%b): %h", {test_main_en, a_bus_en, xfer_main_en}, main_out);
-
-
         #10 $finish;
 	end
 endmodule
