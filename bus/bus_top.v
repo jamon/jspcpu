@@ -1,3 +1,4 @@
+`include "bus.v"
 module top(
     input clk_25mhz,
     output wifi_gpio0,

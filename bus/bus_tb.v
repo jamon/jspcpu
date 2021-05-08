@@ -1,4 +1,5 @@
 `timescale 1ns/1ps 
+`include "./bus.v"
 module bus_tb();
 	reg clk = 0;
     reg [7:0] bus_in_a = 8'h01;

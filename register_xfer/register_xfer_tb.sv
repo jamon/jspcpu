@@ -7,7 +7,7 @@ module register_xfer_tb();
     reg reset = 0;
     reg [WIDTH_AX-1:0] bus_in_addr = 16'hAAAA;
     reg [WIDTH_AX-1:0] bus_in_xfer = 16'h5555;
-    reg [WIDTH_MAIN-1:0] bus_in_main = 8'h00;
+    reg [WIDTH_MAIN-1:0] bus_in_main = 8'h33;
     reg assert_addr = 1'b1;
     reg assert_xfer = 1'b1;
     reg load_xfer = 1'b1;
@@ -23,24 +23,26 @@ module register_xfer_tb();
 
     wire addr_en, xfer_en, main_en;
 
-    // #(.WIDTH_AX(16), .WIDTH_MAIN(8))
-    register_xfer  register_xfer1 (
+    register_xfer #(.WIDTH_AX(16), .WIDTH_MAIN(8)) register_xfer1 (
         .clk(clk),
+
         .addr_in(bus_in_addr),
-        .xfer_in(bus_in_xfer),
-        .main_in(bus_in_main),
         .assert_addr(assert_addr),
+        .addr_out(addr_out),
+        .addr_en(addr_en),
+
+        .xfer_in(bus_in_xfer),
         .assert_xfer(assert_xfer),
+        .load_xfer(load_xfer),
+        .xfer_out(xfer_out),
+        .xfer_en(xfer_en),
+
+        .main_in(bus_in_main),
         .assertlow_main(assertlow_main),
         .asserthigh_main(asserthigh_main),
-        .load_xfer(load_xfer),
         .loadlow_main(loadlow_main),
         .loadhigh_main(loadhigh_main),
-        .addr_out(addr_out),
-        .xfer_out(xfer_out),
         .main_out(main_out),
-        .addr_en(addr_en),
-        .xfer_en(xfer_en),
         .main_en(main_en)
     );
 	
@@ -96,16 +98,16 @@ module register_xfer_tb();
 
         // assert xfer to check value after loadhigh_main
         #10 assert_xfer = 1'b0;
-        #0 assert (xfer_out == 16'h0055)
-            $display ("loadhigh_main: value = 16'h0055 OK");
-            else $error("loadhigh_main: value = 16'h0055 NOT OK");
+        #0 assert (xfer_out == 16'h3355)
+            $display ("loadhigh_main: value = 16'h3355 OK");
+            else $error("loadhigh_main: value = 16'h3355 NOT OK");
         #10 assert_xfer = 1'b1;
 
         // assert addr
         #10 assert_addr = 1'b0;
-        #0 assert (addr_out == 16'h0055)
-            $display ("assert_addr: value = 16'h0055 OK");
-            else $error("assert_addr: value = 16'h0055 NOT OK");
+        #0 assert (addr_out == 16'h3355)
+            $display ("assert_addr: value = 16'h3355 OK");
+            else $error("assert_addr: value = 16'h3355 NOT OK");
         #0 assert (addr_en == 1'b1) 
             $display ("addr_en: assert_addr OK");
             else $error("addr_en: assert_addr NOT OK");
@@ -127,7 +129,7 @@ module register_xfer_tb();
         #0 assert (main_en == 1'b1) 
             $display ("asserthigh_main: main_en OK");
             else $error("asserthigh_main: main_en NOT OK");
-        #0 assert (main_out == 8'h00)
+        #0 assert (main_out == 8'h33)
             $display ("asserthigh_main: value = 8'h00 OK");
             else $error("asserthigh_main: value = 8'h00 NOT OK");
         #10 asserthigh_main = 1'b1;

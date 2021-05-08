@@ -16,18 +16,18 @@ module register_addr #(
     always @(posedge clk) begin
         // $display("  r: %b l: %b, inc: %b, dec: %b", reset, load_xfer, inc, dec);
 
-        value <= reset ? 0 :            // reset
-                load_xfer ? xfer_in :   // load
-                inc ? value + 1 :       // inc
-                dec ? value - 1 :       // dec
+        value <= !reset ? 0 :            // reset
+                !load_xfer ? xfer_in :   // load
+                !inc ? value + 1 :       // inc
+                !dec ? value - 1 :       // dec
                 value;                  // no change
     end
 
     // note that the bus takes care enable behavior, so we just output the data at all times
     assign addr_out = value;
-    assign addr_en = assert_addr;
+    assign addr_en = ~assert_addr;
 
     assign xfer_out = value;
-    assign xfer_en = assert_xfer;
+    assign xfer_en = ~assert_xfer;
 
 endmodule
