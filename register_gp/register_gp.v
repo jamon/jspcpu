@@ -3,12 +3,20 @@ module register_gp #(
     parameter DEFAULT_VALUE = 0 // defaults to "pulled up" (8'hff for 8 width, for example)
 ) (
     input clk,
+
     input [WIDTH-1:0] bus_in,
-    input assert_lhs, assert_rhs, assert_bus, load_bus,
+    input assert_bus,
+    input load_bus,
     output [WIDTH-1:0] bus_out,
+    output bus_en,
+
+    input assert_lhs,
     output [WIDTH-1:0] lhs_out,
+    output lhs_en,
+
+    input assert_rhs,
     output [WIDTH-1:0] rhs_out,
-    output  bus_en, lhs_en, rhs_en
+    output rhs_en
 );
     reg [WIDTH-1:0] value = DEFAULT_VALUE;
 

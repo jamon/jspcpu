@@ -1,0 +1,16 @@
+0 0
+1 NOR
+2 lhs !rhs
+3 !rhs
+4 !lhs rhs
+5 !lhs
+6 XOR
+7 NAND
+8 AND
+9 XNOR
+A lhs
+B lhs + !rhs
+C rhs
+D !lhs + rhs
+E OR
+F ~0

@@ -1,0 +1,16 @@
+0 noop
+1 shl
+2 shr
+3 add
+4 addc
+5 inc
+6 incc
+7 sub
+8 subb
+9 dec
+A and
+B or
+C xor
+D not
+E clc
+F unused

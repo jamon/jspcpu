@@ -2,13 +2,17 @@ module rhs #(
     parameter WIDTH = 8
 ) (
     input clk,
+    input alu_clk,
     input [3:0] operation,
     input [WIDTH-1:0] lhs_in,
     input [WIDTH-1:0] rhs_in,
     output reg [WIDTH-1:0] out
 );
+    initial begin
+        out = 0;
+    end
     // do everything at a clock edge to make timing more predictable
-    always @(posedge clk) begin
+    always @(posedge alu_clk) begin
         case (operation)
             4'b0000: out <= 0;                      // zero
             4'b0001: out <= ~(lhs_in | rhs_in);     // nor

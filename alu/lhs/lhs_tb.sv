@@ -5,6 +5,7 @@ module lhs_tb();
 
 	reg clk = 0;
     reg reset = 0;
+    reg alu_clk = 0;
 
     reg [1:0] lhs_op = 2'b00;
     reg [WIDTH-1:0] lhs_in = 8'hFF;
@@ -14,6 +15,7 @@ module lhs_tb();
 
     lhs #(.WIDTH(WIDTH)) lhs1 (
         .clk(clk),
+        .alu_clk(alu_clk),
         .operation(lhs_op),
         .in(lhs_in),
         .carry_in(lhs_carry_in),
@@ -22,7 +24,12 @@ module lhs_tb();
     );
 	
 	always
-		#(5) clk <= !clk;
+		#(1) clk <= !clk;
+    
+    always
+        #(5) alu_clk <= !alu_clk;
+
+
 
 	initial
 	begin
@@ -41,7 +48,7 @@ module lhs_tb();
         #0 assert (lhs_in == lhs_out) 
             $display   ("default: lhs_in = lhs_out OK");
             else $error("default: lhs_in = lhs_out (in: %h, out: %h) NOT OK", lhs_in, lhs_out);
-        
+       
         #10
         lhs_in = 8'b10101010;
         lhs_carry_in = 1'b0;
