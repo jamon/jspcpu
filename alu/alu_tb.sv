@@ -55,29 +55,34 @@ module alu_tb();
 		#2 operation = 0;
 
 		#2
-		operation = 4'hB;
+		operation = 4'hB; // OR
 		#2 operation = 0;
 		
 
 		#2
-		operation = 4'h3;
+		operation = 4'h3; // add
 		lhs_in = 200;
 		rhs_in = 64;
 		#2 operation = 0;
 
 		#2
-		operation = 4'h4;
+		operation = 4'h4; // addc
 		lhs_in = 0;
 		rhs_in = 0;
 		#2 operation = 0;
 
 		#2
-		operation = 4'h4;
+		operation = 4'h4; // addc
 		lhs_in = 0;
 		rhs_in = 0;
 		#2 operation = 0;
 
 
+		#2
+		operation = 4'h7; // sub
+		lhs_in = 8'b00000001;
+		rhs_in = 8'b10000001;
+		#2 operation = 0;
         #10 $finish;
 	end
 endmodule
