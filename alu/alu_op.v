@@ -34,7 +34,8 @@ module alu_op (
 
     // generate alu clk
     wire select0 = ~|operation;         // select 0 is high when all operation bits are low (NOR reduction)
-    assign alu_clk = ~(~clk | select0); // alu_clk should mirror clk when select0 is low
+    // assign alu_clk = ~(~clk | select0); // alu_clk should mirror clk when select0 is low
+    assign alu_clk = ~select0  & clk;
 
     // always @(posedge clk) begin
     //     case (operation) 

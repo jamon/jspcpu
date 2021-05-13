@@ -13,7 +13,7 @@ module alu #(
     output [WIDTH-1:0] bus_out,
     output bus_en,
 
-    output reg flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow
+    output flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow
 );
 
     wire alu_clk;
@@ -65,8 +65,8 @@ module alu #(
     assign bus_out = result[WIDTH-1:0];
     assign bus_en = ~assert_bus;
 
-    // do everything at a clock edge to make timing more predictable
     always @(posedge alu_clk) begin
+        // update previous carry with carry bit of result, only after alu_clk
         prev_carry = result[WIDTH];
     end
 

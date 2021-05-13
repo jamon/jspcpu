@@ -29,17 +29,6 @@ module alu_tb();
 		.flag_overflow(flag_overflow)
 	);
   
-	// reg [3:0] aluop_operation = 4'b0000;
-    // wire [3:0] aluop_logic_op;
-    // wire [1:0] aluop_shift_select;
-    // wire [1:0] aluop_carry_select;
-    // alu_op alu_op1 (
-    //     .clk(clk),
-    //     .operation(aluop_operation),
-    //     .logic_op(aluop_logic_op),
-    //     .shift_select(aluop_shift_select),
-    //     .carry_select(aluop_carry_select)
-	// );
 	always
 		#(1) clk <= !clk;
 	initial
