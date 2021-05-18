@@ -34,20 +34,4 @@ module mem #(
     assign main_out = memory[addr_in];
     assign main_en = bus_dir & !assert_main;
 
-    // reg lhs_carry_in = 0;
-    // wire [WIDTH-1:0] lhs_out;
-    // wire lhs_carry_out;
-    // 
-    // lhs #(.WIDTH(WIDTH)) lhs1 (
-    //     .clk(clk),
-    //     .alu_clk(alu_clk),
-    //     .operation(aluop_shift_select),
-    //     .in(lhs_in),
-    //     .carry_in(lhs_carry_in),
-    //     .out(lhs_out),
-    //     .carry_out(lhs_carry_out)
-    // );
-	
-
-
 endmodule

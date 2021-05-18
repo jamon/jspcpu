@@ -43,14 +43,12 @@ module mem_tb();
 		$dumpfile("mem_tb.vcd");
 		$dumpvars(0,mem_tb);
 
-		#1
-
 
 		#2 // 8000 = AA
 		mem_busdir = 0; // main->mem
 		addr_in = 16'h8000;
 		main_in = 8'hAA;
-		#1 mem_load_main = 0;
+		mem_load_main = 0;
 		#1 mem_load_main = 1;
 
 		#2 // output current mem value to main bus
