@@ -1,6 +1,8 @@
 module mem #(
     parameter WIDTH_ADDR = 16,
-    parameter WIDTH = 8
+    parameter WIDTH = 8,
+    parameter MEM_SIZE = 65535,
+    parameter DEFAULT_VALUE = 0
 ) (
     input clk,
     
@@ -18,9 +20,13 @@ module mem #(
     // input [WIDTH-1:0] bus_in,
     output [WIDTH-1:0] bus_out
 );
-    reg [WIDTH-1:0] memory [0:65535];
+    reg [WIDTH-1:0] memory [0:MEM_SIZE];
+
+    integer i;
     initial begin
-        memory[0] = ~0;
+        for (i = 0; i <= MEM_SIZE; i++) begin
+            memory[i] = DEFAULT_VALUE;
+        end
     end
     // reg [WIDTH-1:0] data;
 
