@@ -1,6 +1,8 @@
 # jspcpu
 This is a Verilog implementation of the 8-bit Pipeline CPU designed by James Sharman ([see youtube series](https://www.youtube.com/playlist?list=PLFhc0MFC8MiCDOh3cGFji3qQfXziB9yOw)).
 
+The design / layout of the modules intentionally sacrifices performance and even simplicity in some cases in order to more closely follow the modularity of the original CPU design.  This is intended as a tool to learn and play with the CPU design, and to assist with designing and building hardware and software which is compatible with the original CPU design.
+
 **Work in Progress**
 
 Most of the base modules are completed, and have been tested indinvidually to various degrees (some have automated tests, some have just been manually verified).  The tests directory has the beginnings of an integrated test of a few components.
