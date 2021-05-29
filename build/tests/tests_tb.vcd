@@ -1,0 +1,590 @@
+$date
+	Mon May 24 18:29:32 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tests_tb $end
+$var wire 16 ! xfer_xfer_out [15:0] $end
+$var wire 1 " xfer_xfer_en $end
+$var wire 16 # xfer_out [15:0] $end
+$var wire 8 $ xfer_main_out [7:0] $end
+$var wire 1 % xfer_main_en $end
+$var wire 16 & xfer_addr_out [15:0] $end
+$var wire 1 ' xfer_addr_en $end
+$var wire 16 ( pcra0_xfer_out [15:0] $end
+$var wire 1 ) pcra0_xfer_en $end
+$var wire 16 * pcra0_addr_out [15:0] $end
+$var wire 1 + pcra0_addr_en $end
+$var wire 8 , main_out [7:0] $end
+$var wire 16 - addr_out [15:0] $end
+$var wire 8 . a_rhs_out [7:0] $end
+$var wire 1 / a_rhs_en $end
+$var wire 8 0 a_main_out [7:0] $end
+$var wire 1 1 a_main_en $end
+$var wire 8 2 a_lhs_out [7:0] $end
+$var wire 1 3 a_lhs_en $end
+$var reg 1 4 a_assert_lhs $end
+$var reg 1 5 a_assert_main $end
+$var reg 1 6 a_assert_rhs $end
+$var reg 1 7 a_load_main $end
+$var reg 1 8 clk $end
+$var reg 1 9 pcra0_assert_addr $end
+$var reg 1 : pcra0_assert_xfer $end
+$var reg 1 ; pcra0_dec $end
+$var reg 1 < pcra0_inc $end
+$var reg 1 = pcra0_load_xfer $end
+$var reg 1 > reset $end
+$var reg 1 ? test_addr_en $end
+$var reg 16 @ test_addr_out [15:0] $end
+$var reg 1 A test_main_en $end
+$var reg 8 B test_main_out [7:0] $end
+$var reg 1 C test_xfer_en $end
+$var reg 16 D test_xfer_out [15:0] $end
+$var reg 1 E xfer_assert_addr $end
+$var reg 1 F xfer_assert_xfer $end
+$var reg 1 G xfer_asserthigh_main $end
+$var reg 1 H xfer_assertlow_main $end
+$var reg 1 I xfer_load_xfer $end
+$var reg 1 J xfer_loadhigh_main $end
+$var reg 1 K xfer_loadlow_main $end
+$scope module a $end
+$var wire 1 5 assert_bus $end
+$var wire 1 4 assert_lhs $end
+$var wire 1 6 assert_rhs $end
+$var wire 1 1 bus_en $end
+$var wire 8 L bus_out [7:0] $end
+$var wire 1 8 clk $end
+$var wire 1 3 lhs_en $end
+$var wire 8 M lhs_out [7:0] $end
+$var wire 1 7 load_bus $end
+$var wire 1 / rhs_en $end
+$var wire 8 N rhs_out [7:0] $end
+$var wire 8 O bus_in [7:0] $end
+$var reg 8 P value [7:0] $end
+$upscope $end
+$scope module addrbus $end
+$var wire 1 8 clk $end
+$var wire 3 Q enable [2:0] $end
+$var wire 48 R in [47:0] $end
+$var wire 16 S out [15:0] $end
+$var wire 2 T selected [1:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk2[0] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$upscope $end
+$scope module mainbus $end
+$var wire 1 8 clk $end
+$var wire 3 U enable [2:0] $end
+$var wire 24 V in [23:0] $end
+$var wire 8 W out [7:0] $end
+$var wire 2 X selected [1:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk2[0] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$upscope $end
+$scope module pcra0 $end
+$var wire 1 + addr_en $end
+$var wire 16 Y addr_in [15:0] $end
+$var wire 16 Z addr_out [15:0] $end
+$var wire 1 9 assert_addr $end
+$var wire 1 : assert_xfer $end
+$var wire 1 8 clk $end
+$var wire 1 ; dec $end
+$var wire 1 < inc $end
+$var wire 1 = load_xfer $end
+$var wire 1 > reset $end
+$var wire 1 ) xfer_en $end
+$var wire 16 [ xfer_out [15:0] $end
+$var wire 16 \ xfer_in [15:0] $end
+$var reg 16 ] value [15:0] $end
+$upscope $end
+$scope module xfer $end
+$var wire 1 ' addr_en $end
+$var wire 16 ^ addr_in [15:0] $end
+$var wire 16 _ addr_out [15:0] $end
+$var wire 1 E assert_addr $end
+$var wire 1 F assert_xfer $end
+$var wire 1 G asserthigh_main $end
+$var wire 1 H assertlow_main $end
+$var wire 1 8 clk $end
+$var wire 1 I load_xfer $end
+$var wire 1 J loadhigh_main $end
+$var wire 1 K loadlow_main $end
+$var wire 1 % main_en $end
+$var wire 8 ` main_in [7:0] $end
+$var wire 1 " xfer_en $end
+$var wire 16 a xfer_out [15:0] $end
+$var wire 16 b xfer_in [15:0] $end
+$var wire 8 c main_out [7:0] $end
+$var reg 16 d value [15:0] $end
+$upscope $end
+$scope module xferbus $end
+$var wire 1 8 clk $end
+$var wire 3 e enable [2:0] $end
+$var wire 48 f in [47:0] $end
+$var wire 16 g out [15:0] $end
+$var wire 2 h selected [1:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk2[0] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 h
+b1111111111111111 g
+b111100000000000000000000000000000000 f
+b0 e
+b0 d
+b0 c
+b1111111111111111 b
+b0 a
+b11111111 `
+b0 _
+b1111111111111111 ^
+b0 ]
+b1111111111111111 \
+b0 [
+b0 Z
+b1111111111111111 Y
+b0 X
+b11111111 W
+b11110000000000000000 V
+b0 U
+b0 T
+b1111111111111111 S
+b111100000000000000000000000000000000 R
+b0 Q
+b0 P
+b11111111 O
+b0 N
+b0 M
+b0 L
+1K
+1J
+1I
+1H
+1G
+1F
+1E
+b1111 D
+0C
+b1111 B
+0A
+b1111 @
+0?
+0>
+1=
+1<
+1;
+1:
+19
+08
+17
+16
+15
+14
+03
+b0 2
+01
+b0 0
+0/
+b0 .
+b1111111111111111 -
+b11111111 ,
+0+
+b0 *
+0)
+b0 (
+0'
+b0 &
+0%
+b0 $
+b1111111111111111 #
+0"
+b0 !
+$end
+#5000
+18
+#10000
+08
+1>
+#15000
+18
+#20000
+08
+b101010101010101 #
+b101010101010101 \
+b101010101010101 b
+b101010101010101 g
+b11 h
+b100 e
+1C
+b10101010101010100000000000000000000000000000000 f
+b101010101010101 D
+#25000
+18
+#30000
+08
+b1111111111111111 #
+b1111111111111111 \
+b1111111111111111 b
+b1111111111111111 g
+b0 h
+b0 e
+0C
+#35000
+18
+#40000
+08
+b101010101010101 -
+b101010101010101 S
+b101010101010101 Y
+b101010101010101 ^
+b11 T
+b100 Q
+1?
+b10101010101010100000000000000000000000000000000 R
+b101010101010101 @
+#45000
+18
+#50000
+08
+b1111111111111111 -
+b1111111111111111 S
+b1111111111111111 Y
+b1111111111111111 ^
+b0 T
+b0 Q
+0?
+#55000
+18
+#60000
+08
+b101010101010101 #
+b101010101010101 \
+b101010101010101 b
+b101010101010101 g
+b11 h
+b100 e
+1C
+#65000
+18
+#70000
+08
+0=
+#75000
+b10101010101010101010101010101010000000000000000 f
+b101010101010101 (
+b101010101010101 [
+b10101010101010101010101010101010000000000000000 R
+b101010101010101 *
+b101010101010101 Z
+b101010101010101 ]
+18
+#80000
+08
+b101010101010101 -
+b101010101010101 S
+b101010101010101 Y
+b101010101010101 ^
+b10 T
+b1111111111111111 #
+b1111111111111111 \
+b1111111111111111 b
+b1111111111111111 g
+b0 h
+b10 Q
+1+
+09
+1=
+b0 e
+0C
+#85000
+18
+#90000
+08
+b1111111111111111 -
+b1111111111111111 S
+b1111111111111111 Y
+b1111111111111111 ^
+b0 T
+b0 Q
+0+
+19
+#95000
+18
+#100000
+08
+0<
+#105000
+b10101010101010101010101010101100000000000000000 f
+b101010101010110 (
+b101010101010110 [
+b10101010101010101010101010101100000000000000000 R
+b101010101010110 *
+b101010101010110 Z
+b101010101010110 ]
+18
+#110000
+08
+1<
+#115000
+18
+#120000
+08
+b101010101010110 -
+b101010101010110 S
+b101010101010110 Y
+b101010101010110 ^
+b10 T
+b10 Q
+1+
+09
+#125000
+18
+#130000
+08
+b1111111111111111 -
+b1111111111111111 S
+b1111111111111111 Y
+b1111111111111111 ^
+b0 T
+b0 Q
+0+
+19
+#135000
+18
+#140000
+08
+0;
+#145000
+b10101010101010101010101010101010000000000000000 f
+b101010101010101 (
+b101010101010101 [
+b10101010101010101010101010101010000000000000000 R
+b101010101010101 *
+b101010101010101 Z
+b101010101010101 ]
+18
+#150000
+08
+1;
+#155000
+18
+#160000
+08
+b101010101010101 -
+b101010101010101 S
+b101010101010101 Y
+b101010101010101 ^
+b10 T
+b10 Q
+1+
+09
+#165000
+18
+#170000
+08
+b1111111111111111 -
+b1111111111111111 S
+b1111111111111111 Y
+b1111111111111111 ^
+b0 T
+b0 Q
+0+
+19
+#175000
+18
+#180000
+08
+b101010101010101 #
+b101010101010101 \
+b101010101010101 b
+b101010101010101 g
+b10 h
+b10 e
+1)
+0:
+#185000
+18
+#190000
+08
+0I
+#195000
+b11110000000001010101 V
+b1010101 $
+b1010101 c
+b10101010101010101010101010101010101010101010101 f
+b101010101010101 !
+b101010101010101 a
+b10101010101010101010101010101010101010101010101 R
+b101010101010101 &
+b101010101010101 _
+b101010101010101 d
+18
+#200000
+08
+1I
+#205000
+18
+#210000
+08
+b1111111111111111 #
+b1111111111111111 \
+b1111111111111111 b
+b1111111111111111 g
+b0 h
+b0 e
+0)
+1:
+#215000
+18
+#220000
+08
+b1111111111111111 -
+b1111111111111111 S
+b1111111111111111 Y
+b1111111111111111 ^
+b0 T
+b0 Q
+0'
+1E
+#225000
+18
+#230000
+08
+b101010110101010 #
+b101010110101010 \
+b101010110101010 b
+b101010110101010 g
+b11 h
+b100 e
+1C
+b10101011010101001010101010101010101010101010101 f
+b101010110101010 D
+#235000
+18
+#240000
+08
+0I
+#245000
+b10101011010101001010101010101010101010110101010 f
+b101010110101010 !
+b101010110101010 a
+b10101010101010101010101010101010101010110101010 R
+b101010110101010 &
+b101010110101010 _
+b101010110101010 d
+18
+#250000
+08
+1I
+#255000
+18
+#260000
+08
+b10101010 ,
+b10101010 O
+b10101010 W
+b10101010 `
+b1 X
+b1 U
+1%
+b11110000000010101010 V
+b10101010 $
+b10101010 c
+0H
+#265000
+18
+#270000
+08
+07
+#275000
+b10101010 .
+b10101010 N
+b10101010 2
+b10101010 M
+b11111010101010101010 V
+b10101010 0
+b10101010 L
+b10101010 P
+18
+#280000
+08
+17
+#285000
+18
+#290000
+08
+b0 X
+b11111111 ,
+b11111111 O
+b11111111 W
+b11111111 `
+b0 U
+0%
+b11111010101001010101 V
+b1010101 $
+b1010101 c
+1H
+#295000
+18
+#300000
+08
+b10101010 ,
+b10101010 O
+b10101010 W
+b10101010 `
+b10 X
+b10 U
+11
+05
+#305000
+18
+#310000
+08
+b11111111 ,
+b11111111 O
+b11111111 W
+b11111111 `
+b0 X
+b0 U
+01
+15
+#315000
+18
+#320000
+08

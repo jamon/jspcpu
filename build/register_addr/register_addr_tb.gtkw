@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Tue Apr 20 04:11:28 2021
+[*]
+[dumpfile] "/home/jamon/code/ecp5/jspcpu/build/register_addr/register_addr_tb.vcd"
+[dumpfile_mtime] "Tue Apr 20 04:10:13 2021"
+[dumpfile_size] 1338
+[savefile] "/home/jamon/code/ecp5/jspcpu/build/register_addr/register_addr_tb.gtkw"
+[timestart] 0
+[size] 1522 910
+[pos] -1 -1
+*-15.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] bus_tb.
+[sst_width] 204
+[signals_width] 241
+[sst_expanded] 1
+[sst_vpaned_height] 251
+@28
+bus_tb.register_addr1.clk
+bus_tb.register_addr1.addr_en
+@22
+bus_tb.register_addr1.addr_in[15:0]
+bus_tb.register_addr1.addr_out[15:0]
+@28
+bus_tb.register_addr1.assert_addr
+bus_tb.register_addr1.assert_xfer
+bus_tb.register_addr1.dec
+bus_tb.register_addr1.inc
+bus_tb.register_addr1.load_xfer
+bus_tb.register_addr1.reset
+@22
+bus_tb.register_addr1.value[15:0]
+@29
+bus_tb.register_addr1.xfer_en
+@22
+bus_tb.register_addr1.xfer_in[15:0]
+bus_tb.register_addr1.xfer_out[15:0]
+[pattern_trace] 1
+[pattern_trace] 0

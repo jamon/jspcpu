@@ -1,0 +1,38 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Sat May 29 20:59:31 2021
+[*]
+[dumpfile] "/home/jamon/code/ecp5/jspcpu/build/register_const/register_const_tb.vcd"
+[dumpfile_mtime] "Sat May 29 20:57:52 2021"
+[dumpfile_size] 722
+[savefile] "/home/jamon/code/ecp5/jspcpu/build/register_const/register_const_tb.gtkw"
+[timestart] 0
+[size] 1729 1072
+[pos] -730 -1
+*-12.000000 1000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] register_const_tb.
+[sst_width] 227
+[signals_width] 176
+[sst_expanded] 1
+[sst_vpaned_height] 305
+@28
+register_const_tb.register_const1.clk
+@200
+-
+@22
+register_const_tb.register_const1.bus_in[7:0]
+register_const_tb.register_const1.value[7:0]
+@200
+-
+@28
+register_const_tb.register_const1.load_bus
+@29
+register_const_tb.register_const1.assert_bus
+@200
+-
+@22
+register_const_tb.register_const1.bus_out[7:0]
+@28
+register_const_tb.register_const1.bus_en
+[pattern_trace] 1
+[pattern_trace] 0

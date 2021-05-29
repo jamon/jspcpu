@@ -1,0 +1,158 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Sat May 29 20:49:11 2021
+[*]
+[dumpfile] "/home/jamon/code/ecp5/jspcpu/build/control/control_tb.vcd"
+[dumpfile_mtime] "Sat May 29 20:41:54 2021"
+[dumpfile_size] 3692
+[savefile] "/home/jamon/code/ecp5/jspcpu/build/control/control_tb.gtkw"
+[timestart] 0
+[size] 2560 1363
+[pos] 2560 0
+*-12.000000 17000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] control_tb.
+[sst_width] 227
+[signals_width] 386
+[sst_expanded] 1
+[sst_vpaned_height] 405
+@28
+control_tb.pipeline_stage1_1.clk
+@200
+-
+-
+@28
+control_tb.pipeline_stage1_1.bus_request
+control_tb.pipeline_stage1_1.fetch_suppress
+@200
+-
+@28
+control_tb.pipeline_stage1_1.flag_acarry
+control_tb.pipeline_stage1_1.flag_lcarry
+control_tb.pipeline_stage1_1.flag_overflow
+control_tb.pipeline_stage1_1.flag_pcraflip
+control_tb.pipeline_stage1_1.flag_reset
+control_tb.pipeline_stage1_1.flag_sign
+control_tb.pipeline_stage1_1.flag_zero
+@200
+-
+-Stage 1
+@22
+control_tb.pipeline_stage1_1.instruction[7:0]
+@c02024
+^1 /home/jamon/code/ecp5/jspcpu/control/opcodes.txt
+control_tb.pipeline_stage1_1.instruction[7:0]
+@28
+(0)control_tb.pipeline_stage1_1.instruction[7:0]
+(1)control_tb.pipeline_stage1_1.instruction[7:0]
+(2)control_tb.pipeline_stage1_1.instruction[7:0]
+(3)control_tb.pipeline_stage1_1.instruction[7:0]
+(4)control_tb.pipeline_stage1_1.instruction[7:0]
+(5)control_tb.pipeline_stage1_1.instruction[7:0]
+(6)control_tb.pipeline_stage1_1.instruction[7:0]
+(7)control_tb.pipeline_stage1_1.instruction[7:0]
+@1401200
+-group_end
+@c00022
+control_tb.pipeline_stage1_1.controls[15:0]
+@28
+(0)control_tb.pipeline_stage1_1.controls[15:0]
+(1)control_tb.pipeline_stage1_1.controls[15:0]
+(2)control_tb.pipeline_stage1_1.controls[15:0]
+(3)control_tb.pipeline_stage1_1.controls[15:0]
+(4)control_tb.pipeline_stage1_1.controls[15:0]
+(5)control_tb.pipeline_stage1_1.controls[15:0]
+(6)control_tb.pipeline_stage1_1.controls[15:0]
+(7)control_tb.pipeline_stage1_1.controls[15:0]
+(8)control_tb.pipeline_stage1_1.controls[15:0]
+(9)control_tb.pipeline_stage1_1.controls[15:0]
+(10)control_tb.pipeline_stage1_1.controls[15:0]
+(11)control_tb.pipeline_stage1_1.controls[15:0]
+(12)control_tb.pipeline_stage1_1.controls[15:0]
+(13)control_tb.pipeline_stage1_1.controls[15:0]
+(14)control_tb.pipeline_stage1_1.controls[15:0]
+(15)control_tb.pipeline_stage1_1.controls[15:0]
+@200
+-
+@1401200
+-group_end
+@200
+-
+@c02024
+^2 /home/jamon/code/ecp5/jspcpu/control/gpregs.txt
+control_tb.pipeline_stage1_1.lhs_select[1:0]
+@28
+(0)control_tb.pipeline_stage1_1.lhs_select[1:0]
+(1)control_tb.pipeline_stage1_1.lhs_select[1:0]
+@1401200
+-group_end
+@c02024
+^2 /home/jamon/code/ecp5/jspcpu/control/gpregs.txt
+control_tb.pipeline_stage1_1.rhs_select[1:0]
+@28
+(0)control_tb.pipeline_stage1_1.rhs_select[1:0]
+(1)control_tb.pipeline_stage1_1.rhs_select[1:0]
+@1401200
+-group_end
+@c02024
+^3 /home/jamon/code/ecp5/jspcpu/alu/operations.txt
+control_tb.pipeline_stage1_1.aluop_select[3:0]
+@28
+(0)control_tb.pipeline_stage1_1.aluop_select[3:0]
+(1)control_tb.pipeline_stage1_1.aluop_select[3:0]
+(2)control_tb.pipeline_stage1_1.aluop_select[3:0]
+(3)control_tb.pipeline_stage1_1.aluop_select[3:0]
+@1401200
+-group_end
+@2024
+^4 /home/jamon/code/ecp5/jspcpu/control/xfer_load.txt
+control_tb.pipeline_stage1_1.xferload_select[3:0]
+^5 /home/jamon/code/ecp5/jspcpu/control/xfer_assert.txt
+control_tb.pipeline_stage1_1.xferassert_select[2:0]
+@24
+control_tb.pipeline_stage1_1.fetch_suppress_out
+@200
+-
+-Stage 2
+@22
+control_tb.pipeline_stage2_1.instruction[7:0]
+@2024
+^1 /home/jamon/code/ecp5/jspcpu/control/opcodes.txt
+control_tb.pipeline_stage2_1.instruction[7:0]
+@c00022
+control_tb.pipeline_stage2_1.controls[15:0]
+@28
+(0)control_tb.pipeline_stage2_1.controls[15:0]
+(1)control_tb.pipeline_stage2_1.controls[15:0]
+(2)control_tb.pipeline_stage2_1.controls[15:0]
+(3)control_tb.pipeline_stage2_1.controls[15:0]
+(4)control_tb.pipeline_stage2_1.controls[15:0]
+(5)control_tb.pipeline_stage2_1.controls[15:0]
+(6)control_tb.pipeline_stage2_1.controls[15:0]
+(7)control_tb.pipeline_stage2_1.controls[15:0]
+(8)control_tb.pipeline_stage2_1.controls[15:0]
+(9)control_tb.pipeline_stage2_1.controls[15:0]
+(10)control_tb.pipeline_stage2_1.controls[15:0]
+(11)control_tb.pipeline_stage2_1.controls[15:0]
+(12)control_tb.pipeline_stage2_1.controls[15:0]
+(13)control_tb.pipeline_stage2_1.controls[15:0]
+(14)control_tb.pipeline_stage2_1.controls[15:0]
+(15)control_tb.pipeline_stage2_1.controls[15:0]
+@1401200
+-group_end
+@200
+-
+@2024
+^2 /home/jamon/code/ecp5/jspcpu/control/gpregs.txt
+control_tb.pipeline_stage2_1.mainbus_assert_select[3:0]
+^2 /home/jamon/code/ecp5/jspcpu/control/gpregs.txt
+control_tb.pipeline_stage2_1.mainbus_load_select[3:0]
+^6 /home/jamon/code/ecp5/jspcpu/control/spsidi_inc.txt
+control_tb.pipeline_stage2_1.spsidi_inc_select[1:0]
+^7 /home/jamon/code/ecp5/jspcpu/control/addr_select.txt
+control_tb.pipeline_stage2_1.addr_select[2:0]
+@28
+control_tb.pipeline_stage2_1.bus_request_out
+control_tb.pipeline_stage2_1.pcra_flip_out
+control_tb.pipeline_stage2_1.break_out
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,123 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Mon May 10 21:05:11 2021
+[*]
+[dumpfile] "/home/jamon/code/ecp5/jspcpu/build/alu/alu_tb.vcd"
+[dumpfile_mtime] "Mon May 10 20:57:58 2021"
+[dumpfile_size] 3910
+[savefile] "/home/jamon/code/ecp5/jspcpu/build/alu/alu_tb.gtkw"
+[timestart] 0
+[size] 2560 1363
+[pos] 0 0
+*-12.000000 3000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] alu_tb.
+[treeopen] alu_tb.alu1.
+[sst_width] 280
+[signals_width] 323
+[sst_expanded] 1
+[sst_vpaned_height] 436
+@28
+alu_tb.alu1.clk
+alu_tb.alu1.alu_clk
+@200
+-
+-
+@2022
+[color] 2
+^1 /home/jamon/code/ecp5/jspcpu/alu/operations.txt
+alu_tb.alu1.operation[3:0]
+@22
+alu_tb.alu1.lhs_in[7:0]
+alu_tb.alu1.rhs_in[7:0]
+alu_tb.alu1.bus_out[7:0]
+@200
+-
+-LHS / Shift
+@22
+[color] 2
+alu_tb.alu1.lhs_in[7:0]
+@2023
+^2 /home/jamon/code/ecp5/jspcpu/alu/operations_shift.txt
+alu_tb.alu1.aluop_shift_select[1:0]
+@22
+alu_tb.alu1.lhs_in[7:0]
+@c00022
+alu_tb.alu1.lhs_out[7:0]
+@28
+(0)alu_tb.alu1.lhs_out[7:0]
+(1)alu_tb.alu1.lhs_out[7:0]
+(2)alu_tb.alu1.lhs_out[7:0]
+(3)alu_tb.alu1.lhs_out[7:0]
+(4)alu_tb.alu1.lhs_out[7:0]
+(5)alu_tb.alu1.lhs_out[7:0]
+(6)alu_tb.alu1.lhs_out[7:0]
+(7)alu_tb.alu1.lhs_out[7:0]
+@1401200
+-group_end
+@200
+-
+-RHS / Logic
+@22
+[color] 2
+alu_tb.alu1.rhs_in[7:0]
+@2022
+^3 /home/jamon/code/ecp5/jspcpu/alu/operations_logic.txt
+alu_tb.alu1.aluop_logic_op[3:0]
+@c00022
+alu_tb.alu1.rhs_out[7:0]
+@28
+(0)alu_tb.alu1.rhs_out[7:0]
+(1)alu_tb.alu1.rhs_out[7:0]
+(2)alu_tb.alu1.rhs_out[7:0]
+(3)alu_tb.alu1.rhs_out[7:0]
+(4)alu_tb.alu1.rhs_out[7:0]
+(5)alu_tb.alu1.rhs_out[7:0]
+(6)alu_tb.alu1.rhs_out[7:0]
+(7)alu_tb.alu1.rhs_out[7:0]
+@1401200
+-group_end
+@200
+-
+-Adder
+@c02022
+^4 /home/jamon/code/ecp5/jspcpu/alu/operations_carry.txt
+alu_tb.alu1.aluop_carry_select[1:0]
+@28
+(0)alu_tb.alu1.aluop_carry_select[1:0]
+(1)alu_tb.alu1.aluop_carry_select[1:0]
+@1401200
+-group_end
+@28
+alu_tb.alu1.prev_carry
+alu_tb.alu1.carry
+@200
+-
+-Output
+@22
+[color] 1
+alu_tb.alu1.bus_out[7:0]
+@c00022
+alu_tb.alu1.result[8:0]
+@28
+(0)alu_tb.alu1.result[8:0]
+(1)alu_tb.alu1.result[8:0]
+(2)alu_tb.alu1.result[8:0]
+(3)alu_tb.alu1.result[8:0]
+(4)alu_tb.alu1.result[8:0]
+(5)alu_tb.alu1.result[8:0]
+(6)alu_tb.alu1.result[8:0]
+(7)alu_tb.alu1.result[8:0]
+(8)alu_tb.alu1.result[8:0]
+@1401200
+-group_end
+@200
+-
+-Flags
+@28
+alu_tb.alu1.flag_acarry
+alu_tb.alu1.flag_lcarry
+alu_tb.alu1.flag_overflow
+alu_tb.alu1.flag_sign
+alu_tb.alu1.flag_zero
+[pattern_trace] 1
+[pattern_trace] 0

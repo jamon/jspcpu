@@ -1,0 +1,41 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Thu May 13 05:07:18 2021
+[*]
+[dumpfile] "/home/jamon/code/ecp5/jspcpu/build/mem/mem_tb.vcd"
+[dumpfile_mtime] "Thu May 13 05:05:48 2021"
+[dumpfile_size] 1134
+[savefile] "/home/jamon/code/ecp5/jspcpu/build/mem/mem_tb.gtkw"
+[timestart] 0
+[size] 1610 913
+[pos] -1207 165
+*-12.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mem_tb.
+[sst_width] 227
+[signals_width] 147
+[sst_expanded] 1
+[sst_vpaned_height] 249
+@28
+mem_tb.mem1.clk
+@200
+-
+@22
+mem_tb.mem1.addr_in[15:0]
+mem_tb.mem1.main_in[7:0]
+@200
+-
+@28
+mem_tb.mem1.bus_dir
+mem_tb.mem1.load_main
+@200
+-
+@22
+mem_tb.mem1.main_out[7:0]
+@28
+mem_tb.mem1.main_en
+@200
+-
+@23
+mem_tb.mem1.bus_out[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,110 @@
+$date
+	Mon May 24 18:29:05 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module bus_tb $end
+$var reg 8 ! bus_in_a [7:0] $end
+$var reg 8 " bus_in_b [7:0] $end
+$var reg 8 # bus_in_c [7:0] $end
+$var reg 8 $ bus_in_d [7:0] $end
+$var reg 1 % clk $end
+$var reg 4 & en_in [3:0] $end
+$scope module top1 $end
+$var wire 1 % clk $end
+$var wire 4 ' enable [3:0] $end
+$var wire 32 ( in [31:0] $end
+$var wire 8 ) out [7:0] $end
+$var wire 3 * selected [2:0] $end
+$scope begin genblk1[0] $end
+$upscope $end
+$scope begin genblk1[1] $end
+$upscope $end
+$scope begin genblk1[2] $end
+$upscope $end
+$scope begin genblk1[3] $end
+$upscope $end
+$scope begin genblk2[0] $end
+$upscope $end
+$scope begin genblk2[1] $end
+$upscope $end
+$scope begin genblk2[2] $end
+$upscope $end
+$scope begin genblk2[3] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 *
+b11111111 )
+b1000000100000001100000100 (
+b0 '
+b0 &
+0%
+b100 $
+b11 #
+b10 "
+b1 !
+$end
+#5000
+1%
+#10000
+0%
+b100 )
+b1 *
+b1 &
+b1 '
+#15000
+1%
+#20000
+0%
+#25000
+1%
+b11 )
+b10 *
+b10 &
+b10 '
+#30000
+0%
+#35000
+1%
+#40000
+0%
+#45000
+1%
+b10 )
+b11 *
+b100 &
+b100 '
+#50000
+0%
+#55000
+1%
+#60000
+0%
+#65000
+1%
+#70000
+0%
+b1 )
+b100 *
+b1000 &
+b1000 '
+#75000
+1%
+#80000
+0%
+#85000
+1%
+#90000
+0%
+#95000
+1%
+#100000
+0%
