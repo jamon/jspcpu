@@ -1,0 +1,249 @@
+0 nop
+1 mov a, #1
+2 mov b, #1
+3 mov c, #1
+4 mov d, #1
+5 mov tl, #1
+6 mov th, #1
+7 mov a, b
+8 mov a, c
+9 mov a, d
+10 mov b, a
+11 mov b, c
+12 mov b, d
+13 mov c, a
+14 mov c, b
+15 mov c, d
+16 mov d, a
+17 mov d, b
+18 mov d, c
+19 mov tl, a
+20 mov tl, b
+21 mov tl, c
+22 mov tl, d
+23 mov th, a
+24 mov th, b
+25 mov th, c
+26 mov th, d
+27 mov a, tl
+28 mov b, tl
+29 mov c, tl
+30 mov d, tl
+31 mov a, th
+32 mov b, th
+33 mov c, th
+34 mov d, th
+35 mov ra, tx
+36 mov tx, ra
+37 mov sp, tx
+38 mov tx, sp
+39 mov si, tx
+40 mov tx, si
+41 mov di, tx
+42 mov tx, di
+43 mov di, si
+44 mov si, di
+45 mov si, sp
+46 mov di, sp
+47 subae d, c
+48 dec ra
+49 dec sp
+50 dec si
+51 dec di
+52 inc sp
+53 inc si
+54 inc di
+55 out lcdCommand, a
+56 out lcdData, a
+64 mov a, si
+65 mov b, si
+66 mov c, si
+67 mov d, si
+68 mov a, di
+69 mov b, di
+70 mov c, di
+71 mov d, di
+72 mov a, tx
+73 mov b, tx
+74 mov c, tx
+75 mov d, tx
+76 mov si, a
+77 mov si, b
+78 mov si, c
+79 mov si, d
+80 mov di, a
+81 mov di, b
+82 mov di, c
+83 mov di, d
+84 mov tx, a
+85 mov tx, b
+86 mov tx, c
+87 mov tx, d
+88 addc b, b
+89 add b, b
+90 addac c, a
+91 lodsb 
+92 callBD tx
+93 callBD di
+94 retBD 
+95 prebranch 
+96 jmp tx
+97 jo tx
+98 jno tx
+99 js tx
+100 jns tx
+101 jz tx/je tx
+102 jnz tx/jne tx
+103 jc tx/jnae tx/jb tx
+104 jnc tx/jae tx/jnb tx
+105 jbe tx/jna tx
+106 ja tx/jnbe tx
+107 jl tx/jnge tx
+108 jge tx/jnl tx
+109 jle tx/jng tx
+110 jg tx/jnle tx
+111 jlc tx
+112 jnlc tx
+113 jmp di
+114 push a
+115 push b
+116 push c
+117 push d
+118 push tl
+119 push th
+120 pop a
+121 pop b
+122 pop c
+123 pop d
+124 pop tl
+125 pop th
+126 stosb 
+127 clc 
+128 shl a
+129 shl b
+130 shl c
+131 shl d
+132 shr a
+133 shr b
+134 shr c
+135 shr d
+136 add a, b
+137 add a, c
+138 add a, d
+139 add b, a
+140 add b, c
+141 add b, d
+142 add c, a
+143 add c, b
+144 add c, d
+145 add d, a
+146 add d, b
+147 add d, c
+148 addc a, b
+149 addc a, c
+150 addc a, d
+151 addc b, a
+152 addc b, c
+153 addc b, d
+154 addc c, a
+155 addc c, b
+156 addc c, d
+157 addc d, a
+158 addc d, b
+159 addc d, c
+160 inc a
+161 inc b
+162 inc c
+163 inc d
+164 incc a
+165 incc b
+166 incc c
+167 incc d
+168 sub a, b
+169 sub a, c
+170 sub a, d
+171 sub b, a
+172 sub b, c
+173 sub b, d
+174 sub c, a
+175 sub c, b
+176 sub c, d
+177 sub d, a
+178 sub d, b
+179 sub d, c
+180 subb a, b
+181 subb a, c
+182 subb a, d
+183 subb b, a
+184 subb b, c
+185 subb b, d
+186 subb c, a
+187 subb c, b
+188 subb c, d
+189 subb d, a
+190 subb d, b
+191 subb d, c
+192 dec a
+193 dec b
+194 dec c
+195 dec d
+196 and a, b
+197 and a, c
+198 and a, d
+199 and b, a
+200 and b, c
+201 and b, d
+202 and c, a
+203 and c, b
+204 and c, d
+205 and d, a
+206 and d, b
+207 and d, c
+208 or a, b
+209 or a, c
+210 or a, d
+211 or b, a
+212 or b, c
+213 or b, d
+214 or c, a
+215 or c, b
+216 or c, d
+217 or d, a
+218 or d, b
+219 or d, c
+220 xor a, b
+221 xor a, c
+222 xor a, d
+223 xor b, a
+224 xor b, c
+225 xor b, d
+226 xor c, a
+227 xor c, b
+228 xor c, d
+229 xor d, a
+230 xor d, b
+231 xor d, c
+232 xor a, a
+233 xor b, b
+234 xor c, c
+235 xor d, d
+236 not a
+237 not b
+238 not c
+239 not d
+240 cmp a, b
+241 cmp a, c
+242 cmp a, d
+243 cmp b, a
+244 cmp b, c
+245 cmp b, d
+246 cmp c, a
+247 cmp c, b
+248 cmp c, d
+249 cmp d, a
+250 cmp d, b
+251 cmp d, c
+252 test a
+253 test b
+254 test c
+255 test d
