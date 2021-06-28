@@ -1,7 +1,6 @@
 module rhs #(
     parameter WIDTH = 8
 ) (
-    input clk,
     input alu_clk,
     input [3:0] operation,
     input [WIDTH-1:0] lhs_in,

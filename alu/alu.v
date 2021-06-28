@@ -35,7 +35,6 @@ module alu #(
     wire lhs_carry_out;
 
     lhs #(.WIDTH(WIDTH)) lhs1 (
-        .clk(clk),
         .alu_clk(alu_clk),
         .operation(aluop_shift_select),
         .in(lhs_in),
@@ -46,7 +45,6 @@ module alu #(
 	
     wire [WIDTH-1:0] rhs_out;
     rhs #(.WIDTH(WIDTH)) rhs1 (
-        .clk(clk),
         .alu_clk(alu_clk),
         .operation(aluop_logic_op),
         .lhs_in(lhs_in),
@@ -60,14 +58,16 @@ module alu #(
 
     reg prev_carry = 1'b0;
 
+    // verilator lint_off WIDTH
     wire [WIDTH:0] result = lhs_out + rhs_out + carry;
+    // verilator lint_on WIDTH
 
     assign bus_out = result[WIDTH-1:0];
     assign bus_en = ~assert_bus;
 
     always @(posedge alu_clk) begin
         // update previous carry with carry bit of result, only after alu_clk
-        prev_carry = result[WIDTH];
+        prev_carry <= result[WIDTH];
     end
 
     // flags
