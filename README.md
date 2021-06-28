@@ -39,4 +39,5 @@ These steps will work on cygwin (or git bash) or powershell--but the scripts to 
 * for the prebuilt .gtkw files in the build directory you'll need to find/replace the paths to the filter files (.txt files)
 * support for windows is lacking (due to using .sh files for everything)--it works, but it is a little clunkier
 * some of my module.env files and test scripts are not up to date (older modules haven't been updated yet)
-* it may be necessary to manually specify your PROJECT_PATH in build.env
+* it may be necessary to manually specify your PROJECT_PATH, IVERILOG_CELLS, and TRELLIS_DB in build.env
+* for verilator to work, make sure to set env variable VERILATOR_ROOT to the correct value (likely c:\\msys64\\mingw64\\share\\verilator)
