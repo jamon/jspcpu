@@ -4,18 +4,32 @@
 #include <verilated_vcd_c.h>
 #include "Valu.h"
 
-#define MAX_SIM_TIME 20
+// #define MAX_SIM_TIME 20
 vluint64_t sim_time = 0;
+Valu *dut = new Valu;
+VerilatedVcdC *m_trace = new VerilatedVcdC;
 
+void check_result(const char* test_name, const unsigned char expected) {
+    // probably should add a "trace" option that outputs all the meaningful fields
+    if(dut->alu__DOT__result != expected)
+        std::cerr << "ERROR: " << test_name
+            << " exp: " << (int)expected
+            << " actual: " << (int)(dut->alu__DOT__result)
+            << " simtime: " << sim_time << std::endl
+            << "\tlhs_in = " << (int)(dut->lhs_in) << std::endl
+            << "\trhs_in = " << (int)(dut->rhs_in) << std::endl
+            << "\toperation = " << (int)(dut->operation) << std::endl;
+    
+}
 
-void test_step(Valu *dut, VerilatedVcdC *m_trace) {
-    dut->clk ^= 1;
+void test_step() {
+    // dut->clk ^= 1;
     dut->eval();
     m_trace->dump(sim_time);
     sim_time++;
 }
 
-void test_init(Valu *dut, VerilatedVcdC *m_trace) {
+void test_init() {
     dut->clk = 0;
     dut->lhs_in = 0;
     dut->rhs_in = 0;
@@ -28,50 +42,38 @@ void test_init(Valu *dut, VerilatedVcdC *m_trace) {
     dut->flag_overflow = 0;
 }
 
-void test_and(Valu *dut, VerilatedVcdC *m_trace) {
-    test_init(dut, m_trace);
-    dut->lhs_in = 0x55;
-    dut->rhs_in = 0xAA;
-    dut->operation = 0xA;
-    dut->clk = 1;
-    dut->eval();
-    dut->clk = 0;
-    test_step(dut, m_trace);
-}
+void test_logic(const char* test_name, const unsigned char operation, const unsigned char lhs_in, const unsigned char rhs_in, const unsigned char expected) {
+    test_init();
+    dut->lhs_in = lhs_in;
+    dut->rhs_in = rhs_in;
+    dut->operation = operation;
 
-void test_or(Valu *dut, VerilatedVcdC *m_trace) {
-    test_init(dut, m_trace);
-    dut->lhs_in = 0x55;
-    dut->rhs_in = 0xAA;
-    dut->operation = 0xB;
+    test_step();
     dut->clk = 1;
-    dut->eval();
-    dut->clk = 0;
-    test_step(dut, m_trace);
+    test_step();
+
+    check_result(test_name, expected);
 }
 
 int main(int argc, char** argv, char** env) {
-    Valu *dut = new Valu;
 
     Verilated::traceEverOn(true);
-    VerilatedVcdC *m_trace = new VerilatedVcdC;
     dut->trace(m_trace, 5);
     m_trace->open("waveform.vcd");
 
-    test_init(dut, m_trace);
-    test_step(dut, m_trace);
+    test_init();
+    test_step();
 
-    test_and(dut, m_trace);
-    test_or(dut, m_trace);
-    for (int i = 0; i < 5; i++) {
-        test_step(dut, m_trace);
+    for(int i = 0; i <= 255; i++) {
+        for(int j = 0; j <= 255; j++) {
+            test_logic("AND", 0xA, i, j, i & j);
+            test_logic("OR", 0xB, i, j, i | j);
+        }
     }
-    // while (sim_time < MAX_SIM_TIME) {
-    //     dut->clk ^= 1;
-    //     dut->eval();
-    //     m_trace->dump(sim_time);
-    //     sim_time++;
-    // }
+
+    for (int i = 0; i < 5; i++) {
+        test_step();
+    }
 
     m_trace->close();
     delete dut;
