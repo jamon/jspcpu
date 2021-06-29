@@ -1,6 +1,6 @@
 `timescale 1ns/1ps 
 `include "alu.v"
-module alu_tb();
+module TOP();
     localparam WIDTH = 8;
 
 	reg clk = 0;
@@ -13,7 +13,7 @@ module alu_tb();
 	wire bus_en;
 	wire flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow;
 
-	alu #(.WIDTH(WIDTH)) alu1 (
+	alu #(.WIDTH(WIDTH)) alu (
 		.clk(clk),
 
 		.lhs_in(lhs_in),
@@ -34,7 +34,7 @@ module alu_tb();
 	initial
 	begin
 		$dumpfile("alu_tb.vcd");
-		$dumpvars(0,alu_tb);
+		$dumpvars(0,TOP);
 		#1
 		#2
 		lhs_in = 8'h55;

@@ -2,7 +2,7 @@ MODULE=alu
 VERILATOR_BIN=verilator_bin
 
 .PHONY:sim
-sim: waveform.vcd
+sim: ${MODULE}_tb.vcd
 
 .PHONY:verilate
 verilate: .stamp.verilate
@@ -11,12 +11,12 @@ verilate: .stamp.verilate
 build: obj_dir/Valu
 
 .PHONY:waves
-waves: waveform.gtkw
+waves: ${MODULE}_tb.gtkw
 	@echo
 	@echo "### WAVES ###"
-	gtkwave waveform.gtkw
+	gtkwave ${MODULE}_tb.gtkw
 
-waveform.vcd: ./obj_dir/V$(MODULE)
+${MODULE}_tb.vcd: ./obj_dir/V$(MODULE)
 	@echo
 	@echo "### SIMULATING ###"
 	@./obj_dir/V$(MODULE)
@@ -26,10 +26,10 @@ waveform.vcd: ./obj_dir/V$(MODULE)
 	@echo "### BUILDING SIM ###"
 	make -C obj_dir -f V$(MODULE).mk V$(MODULE)
 
-.stamp.verilate: $(MODULE).v tb_$(MODULE).cpp
+.stamp.verilate: $(MODULE).v $(MODULE)_tb.cpp
 	@echo
 	@echo "### VERILATING ###"
-	$(VERILATOR_BIN) -Wall --trace -cc $(MODULE).v --exe tb_$(MODULE).cpp
+	$(VERILATOR_BIN) -Wall --trace -cc $(MODULE).v --exe $(MODULE)_tb.cpp
 	@touch .stamp.verilate
 
 .PHONY:lint
@@ -40,4 +40,10 @@ lint: $(MODULE).v
 clean:
 	rm -rf .stamp.*;
 	rm -rf ./obj_dir
-	rm -rf waveform.vcd
+	rm -rf ${MODULE}_tb.vcd
+	rm ${MODULE}.out
+
+.PHONY: iverilog
+iverilog:
+	iverilog -grelative-include -g2012 -o ${MODULE}.out -D VCD_OUTPUT=${MODULE} ${MODULE}_tb.sv
+	vvp ${MODULE}.out

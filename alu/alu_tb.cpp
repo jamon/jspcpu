@@ -59,7 +59,7 @@ int main(int argc, char** argv, char** env) {
 
     Verilated::traceEverOn(true);
     dut->trace(m_trace, 5);
-    m_trace->open("waveform.vcd");
+    m_trace->open("alu_tb.vcd");
 
     test_init();
     test_step();
