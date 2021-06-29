@@ -41,7 +41,7 @@ clean:
 	rm -rf .stamp.*;
 	rm -rf ./obj_dir
 	rm -rf ${MODULE}_tb.vcd
-	rm ${MODULE}.out
+	rm -f ${MODULE}.out
 
 .PHONY: iverilog
 iverilog:
