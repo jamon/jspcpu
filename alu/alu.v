@@ -1,3 +1,4 @@
+`default_nettype none
 `include "alu_op.v"
 `include "lhs/lhs.v"
 `include "rhs/rhs.v"
@@ -13,7 +14,8 @@ module alu #(
     output [WIDTH-1:0] bus_out,
     output bus_en,
 
-    output flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow
+    output flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow,
+    output [4:0] flags
 );
 
     wire alu_clk;
@@ -30,7 +32,6 @@ module alu #(
         .carry_select(aluop_carry_select)
 	);
 
-    reg lhs_carry_in = 0;
     wire [WIDTH-1:0] lhs_out;
     wire lhs_carry_out;
 
@@ -38,7 +39,6 @@ module alu #(
         .alu_clk(alu_clk),
         .operation(aluop_shift_select),
         .in(lhs_in),
-        .carry_in(lhs_carry_in),
         .out(lhs_out),
         .carry_out(lhs_carry_out)
     );
@@ -78,4 +78,5 @@ module alu #(
     assign flag_lcarry = lhs_carry_out;
     assign flag_sign = result[WIDTH-1];
     assign flag_overflow = (lhs_out[WIDTH-1] ^ result[WIDTH-1]) & (rhs_out[WIDTH-1] ^ result[WIDTH-1]);
+    assign flags = {flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow};
 endmodule
