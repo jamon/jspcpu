@@ -3,7 +3,8 @@ VERILATOR_BIN=verilator_bin
 
 .PHONY:sim
 sim: ${MODULE}_tb.vcd
-
+	@./obj_dir/V$(MODULE)
+	
 .PHONY:verilate
 verilate: .stamp.verilate
 
@@ -19,7 +20,7 @@ waves: ${MODULE}_tb.gtkw
 ${MODULE}_tb.vcd: ./obj_dir/V$(MODULE)
 	@echo
 	@echo "### SIMULATING ###"
-	@./obj_dir/V$(MODULE)
+
 
 ./obj_dir/V$(MODULE): .stamp.verilate
 	@echo
