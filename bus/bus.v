@@ -3,7 +3,7 @@ module bus #(
     parameter COUNT = 8, // number of connections (things that can assert) to the bus
     parameter DEFAULT_VALUE = ~0 // defaults to "pulled up" (8'hff for 8 width, for example)
 ) (
-    input clk,
+    // input clk,
     input [TOTAL_WIDTH-1:0] in,
     input [COUNT-1:0] enable,
     output [WIDTH-1:0] out
@@ -34,7 +34,9 @@ endgenerate
 // and returns the index of it.
 // ex {0, 1, 0, 1, 0} MSB is 3, result is b101
 // this resolves potential bus conflicts silently (for better or worse)
-wire [ENCODED_WIDTH:0] enable_encoded[0:COUNT];
+// verilator lint_off UNOPTFLAT
+wire [ENCODED_WIDTH-1:0] enable_encoded[0:COUNT];
+// verilator lint_on UNOPTFLAT
 // default to index 0 if nothing is asserting to bus (the default value)
 assign enable_encoded[0] = 0;
 // this expands to something like:

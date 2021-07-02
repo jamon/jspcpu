@@ -14,7 +14,7 @@ module alu #(
     output [WIDTH-1:0] bus_out,
     output bus_en,
 
-    output flag_zero, flag_acarry, flag_lcarry, flag_sign, flag_overflow,
+    output flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow,
     output [4:0] flags
 );
 
@@ -73,9 +73,9 @@ module alu #(
     // flags
 
     // video series does this with 74ls02 (NOR) -> 74ls08 (AND), we'll just use 8-input NOR
-    assign flag_zero = ~| result[WIDTH-1:0];
-    assign flag_acarry = result[WIDTH];
     assign flag_lcarry = lhs_carry_out;
+    assign flag_acarry = result[WIDTH];
+    assign flag_zero = ~| result[WIDTH-1:0];
     assign flag_sign = result[WIDTH-1];
     assign flag_overflow = (lhs_out[WIDTH-1] ^ result[WIDTH-1]) & (rhs_out[WIDTH-1] ^ result[WIDTH-1]);
     assign flags = {flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow};
