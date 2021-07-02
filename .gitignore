@@ -1,1 +1,6 @@
 .sconsign.dblite
+build
+obj_dir
+.stamp.*
+*.vcd
+*.out
