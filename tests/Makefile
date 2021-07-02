@@ -30,12 +30,12 @@ ${MODULE}_tb.vcd: ./obj_dir/V$(MODULE)
 .stamp.verilate: $(MODULE).v $(MODULE)_tb.cpp
 	@echo
 	@echo "### VERILATING ###"
-	$(VERILATOR_BIN) -Wall --trace -cc $(MODULE).v --exe $(MODULE)_tb.cpp
+	$(VERILATOR_BIN) -Wall -Wno-DECLFILENAME --relative-includes --trace -cc $(MODULE).v --exe $(MODULE)_tb.cpp
 	@touch .stamp.verilate
 
 .PHONY:lint
 lint: $(MODULE).v
-	$(VERILATOR_BIN) --lint-only $(MODULE).v
+	$(VERILATOR_BIN) --relative-includes --lint-only $(MODULE).v
 
 .PHONY: clean
 clean:
