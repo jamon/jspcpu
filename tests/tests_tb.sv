@@ -66,10 +66,10 @@ module tests_tb();
     wire xfer_main_en;
 
     register_xfer #(.WIDTH_AX(16), .WIDTH_MAIN(8)) xfer (
-        .clk(clk),
+        // .clk(clk),
 
         // addr bus
-        .addr_in(addr_out),
+        // .addr_in(addr_out),
         .assert_addr(xfer_assert_addr),
         .addr_out(xfer_addr_out), .addr_en(xfer_addr_en),
 
@@ -104,10 +104,10 @@ module tests_tb();
     reg pcra0_dec = 1'b1;
 
     register_addr #(.WIDTH(WIDTH_AX)) pcra0 (
-        .clk(clk),
+        // .clk(clk),
         .reset(reset),
 
-        .addr_in(addr_out),
+        // .addr_in(addr_out),
         .assert_addr(pcra0_assert_addr),
         .addr_out(pcra0_addr_out),
         .addr_en(pcra0_addr_en),
@@ -129,7 +129,7 @@ module tests_tb();
     wire [WIDTH_MAIN-1:0] main_out;
 
 	bus #(.WIDTH(WIDTH_MAIN),.COUNT(3)) mainbus (
-        .clk(clk),
+        // .clk(clk),
         .in({
             test_main_out,
             a_main_out,
@@ -149,7 +149,7 @@ module tests_tb();
     wire [WIDTH_AX-1:0] addr_out;
 
 	bus #(.WIDTH(WIDTH_AX),.COUNT(3)) addrbus (
-        .clk(clk),
+        // .clk(clk),
         .in({
             test_addr_out,
             pcra0_addr_out,
@@ -169,7 +169,7 @@ module tests_tb();
     wire [WIDTH_AX-1:0] xfer_out;
 
 	bus #(.WIDTH(WIDTH_AX),.COUNT(3)) xferbus (
-        .clk(clk),
+        // .clk(clk),
         .in({
             test_xfer_out,
             pcra0_xfer_out,
