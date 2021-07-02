@@ -7,7 +7,7 @@ module register_xfer #(
     input clk,
 
     // address bus
-    input [WIDTH_AX-1:0] addr_in,
+    // input [WIDTH_AX-1:0] addr_in,
     input assert_addr,
     output [WIDTH_AX-1:0] addr_out,
     output addr_en,
@@ -42,7 +42,7 @@ module register_xfer #(
     assign xfer_en = ~assert_xfer;
 
     // slightly weird to only use the assertlow to determine which output goes to main, but the bus handles the rest
-    assign main_out = assertlow_main ? value[WIDTH_AX-1:WIDTH_AX-WIDTH_MAIN] : value[WIDTH_MAIN:0];
+    assign main_out = assertlow_main ? value[WIDTH_AX-1:WIDTH_AX-WIDTH_MAIN] : value[WIDTH_MAIN-1:0];
     // bus enable is active high, asserts are active low
     assign main_en = ~(assertlow_main & asserthigh_main);
 

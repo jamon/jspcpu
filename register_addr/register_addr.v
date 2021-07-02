@@ -3,7 +3,7 @@ module register_addr #(
     parameter DEFAULT_VALUE = 0 // defaults to zero
 ) (
     input clk, inc, dec, reset,
-    input [WIDTH-1:0] addr_in,
+    // input [WIDTH-1:0] addr_in,
     input [WIDTH-1:0] xfer_in,
     input assert_addr, assert_xfer, load_xfer,
     output [WIDTH-1:0] addr_out,
