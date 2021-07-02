@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.77 (w)1999-2016 BSI
-[*] Fri Jul 02 04:32:23 2021
+[*] Fri Jul 02 04:57:21 2021
 [*]
 [dumpfile] "C:\Users\ms\Documents\code\jspcpu\tests\tests_tb.vcd"
-[dumpfile_mtime] "Fri Jul 02 04:29:37 2021"
-[dumpfile_size] 22036
+[dumpfile_mtime] "Fri Jul 02 04:52:41 2021"
+[dumpfile_size] 25676
 [savefile] "C:\Users\ms\Documents\code\jspcpu\tests\tests_tb.gtkw"
 [timestart] 0
 [size] 1707 897
@@ -62,7 +62,32 @@ TOP.tests.test_main_out[7:0]
 TOP.tests.test_main_en
 @200
 -
+@22
+TOP.tests.alu.operation[3:0]
+TOP.tests.alu.lhs_in[7:0]
+TOP.tests.alu.rhs_in[7:0]
+TOP.tests.alu.bus_out[7:0]
+@200
 -
+@c00022
+TOP.tests.alu.flags[4:0]
+@28
+(0)TOP.tests.alu.flags[4:0]
+(1)TOP.tests.alu.flags[4:0]
+(2)TOP.tests.alu.flags[4:0]
+(3)TOP.tests.alu.flags[4:0]
+(4)TOP.tests.alu.flags[4:0]
+@1401200
+-group_end
+@28
+TOP.tests.alu.flag_lcarry
+@29
+TOP.tests.alu.flag_acarry
+@28
+TOP.tests.alu.flag_zero
+TOP.tests.alu.flag_sign
+TOP.tests.alu.flag_overflow
+@200
 -
 [pattern_trace] 1
 [pattern_trace] 0

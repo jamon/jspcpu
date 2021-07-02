@@ -3,6 +3,7 @@
 `include "../register_xfer/register_xfer.v"
 `include "../register_addr/register_addr.v"
 `include "../bus/bus.v"
+`include "../alu/alu.v"
 
 module tests(
     input clk, reset,
@@ -48,6 +49,10 @@ module tests(
     input   di_assert_addr,
             di_assert_xfer, di_load_xfer,
             di_inc, di_dec,
+
+    // alu
+    input   alu_assert_main,
+    input   [3:0] alu_operation,
 
     // bus outputs
     output  [WIDTH_AX-1:0] addr_out, xfer_out,
@@ -330,15 +335,41 @@ module tests(
     );
 
 
+  
+    // -----------> ALU <------------
+    wire [WIDTH_MAIN-1:0] alu_main_out;
+    wire alu_main_en;
+
+    // verilator lint_off UNUSED
+    wire alu_flag_lcarry, alu_flag_acarry, alu_flag_zero, alu_flag_sign, alu_flag_overflow; 
+    wire [4:0] alu_flags;
+    // verilator lint_on UNUSED
+
+    alu #(.WIDTH(WIDTH_MAIN)) alu (
+        .clk(clk),
+
+        .lhs_in(lhs_out), .rhs_in(rhs_out),
+
+        .operation(alu_operation),
+
+        // main bus
+        .assert_bus(alu_assert_main),
+        .bus_out(alu_main_out), .bus_en(alu_main_en),
+
+        .flag_lcarry(alu_flag_lcarry), .flag_acarry(alu_flag_acarry), .flag_zero(alu_flag_zero), .flag_sign(alu_flag_sign), .flag_overflow(alu_flag_overflow),
+        .flags(alu_flags)
+    );
+
     // -----------> BUS MAIN <------------
 
-	bus #(.WIDTH(WIDTH_MAIN),.COUNT(6)) mainbus (
+	bus #(.WIDTH(WIDTH_MAIN),.COUNT(7)) mainbus (
         .in({
             test_main_out,
             a_main_out,
             b_main_out,
             c_main_out,
             d_main_out,
+            alu_main_out,
             xfer_main_out
         }),
         .enable({
@@ -347,6 +378,7 @@ module tests(
             b_main_en,
             c_main_en,
             d_main_en,
+            alu_main_en,
             xfer_main_en
         }),
         .out(main_out)
