@@ -1,8 +1,11 @@
+`default_nettype none
 module mem #(
     parameter WIDTH_ADDR = 16,
     parameter WIDTH = 8,
     parameter MEM_SIZE = 65535,
+    // verilator lint_off UNUSED
     parameter DEFAULT_VALUE = 0
+    // verilator lint_on UNUSED
 ) (
     input clk,
     
@@ -21,23 +24,32 @@ module mem #(
     output [WIDTH-1:0] bus_out
 );
     reg [WIDTH-1:0] memory [0:MEM_SIZE];
+    // reg [WIDTH-1:0] value;
+
+    wire write_enable = load_main | bus_dir;
 
     integer i;
     initial begin
         for (i = 0; i <= MEM_SIZE; i++) begin
             memory[i] = DEFAULT_VALUE;
+            // memory[i] = {i[7:0]};
         end
     end
     // reg [WIDTH-1:0] data;
 
     always @(posedge clk) begin
-        if(load_main & !bus_dir)
+        if(!write_enable)
             memory[addr_in] <= main_in;
     end
 
-    assign bus_out = !bus_dir ? main_in : memory[addr_in];
+    // always @(posedge clk) begin
+    //     if(write_enable)
+    //         value <= memory[addr_in];
+    // end
 
-    assign main_out = memory[addr_in];
+    assign bus_out = memory[addr_in];
+
+    assign main_out = !bus_dir ? main_in : memory[addr_in];
     assign main_en = bus_dir & !assert_main;
 
 endmodule

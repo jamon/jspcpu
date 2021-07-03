@@ -72,9 +72,9 @@ module alu #(
 
     // flags
 
-    // video series does this with 74ls02 (NOR) -> 74ls08 (AND), we'll just use 8-input NOR
     assign flag_lcarry = lhs_carry_out;
     assign flag_acarry = result[WIDTH];
+    // video series does this with 74ls02 (NOR) -> 74ls08 (AND), we'll just use 8-input NOR
     assign flag_zero = ~| result[WIDTH-1:0];
     assign flag_sign = result[WIDTH-1];
     assign flag_overflow = (lhs_out[WIDTH-1] ^ result[WIDTH-1]) & (rhs_out[WIDTH-1] ^ result[WIDTH-1]);

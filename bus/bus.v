@@ -4,7 +4,10 @@ module bus #(
     parameter DEFAULT_VALUE = ~0 // defaults to "pulled up" (8'hff for 8 width, for example)
 ) (
     // input clk,
+    // verilator lint_off UNOPTFLAT
     input [TOTAL_WIDTH-1:0] in,
+    // verilator lint_on UNOPTFLAT
+
     input [COUNT-1:0] enable,
     output [WIDTH-1:0] out
 );

@@ -1,3 +1,4 @@
+`default_nettype none
 module register_const #(
     parameter WIDTH = 8, // bus width in bits
     parameter DEFAULT_VALUE = 0 // defaults to "pulled up" (8'hff for 8 width, for example)

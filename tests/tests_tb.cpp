@@ -75,7 +75,14 @@ void test_init() {
     dut->d_load_main = 1;
     dut->d_assert_lhs = 1;
     dut->d_assert_rhs = 1;
-        
+
+    dut->const1_assert_main = 1;
+    dut->const1_load_mem = 1;
+
+    dut->mem_assert_main = 1;
+    dut->mem_load_main = 1;
+
+    dut->alu_assert_main = 1;
 
     dut->pcra0_assert_addr = 1;
     dut->pcra0_assert_xfer = 1;
@@ -232,6 +239,199 @@ void test_basic_alu() {
 
 }
 
+
+void test_basic_mem() {
+    const char* test_name = "test_basic_mem";
+    test_init();
+
+    // [0x5555] <= 0x55
+    dut->test_addr_out = 0x5555;
+    dut->test_addr_en = 1;
+    dut->test_main_out = 0x55;
+    dut->test_main_en = 1;
+    dut->mem_busdir = 0;
+    dut->mem_load_main = 0;
+    test_step_clk(0);
+
+    test_step_clk(1);
+    // if(dut->xfer_out != 0x5555) std::cerr << "ERROR: " << test_name
+    //         << " expected xfer_out = 0x5555 actual: " << std::hex << dut->xfer_out
+    //         << " simtime: " << std::dec << sim_time << std::endl;
+    dut->mem_busdir = 1;
+    dut->mem_load_main = 1;
+    // dut->test_addr_en = 0;
+    dut->test_main_en = 0;
+
+    dut->mem_assert_main = 0;
+    test_step_clk(0);
+
+    test_step_clk(1);
+    if(dut->main_out != 0x55) std::cerr << "ERROR: " << test_name
+            << " [0x5555] == 0x55"
+            << " expected main_out = 0x55 actual: 0x" << std::hex << (int)(dut->main_out)
+            << " simtime: " << std::dec << sim_time << std::endl;
+    // std::cout << "[0x5555] = " << std::hex << (int)(dut->tests__DOT__mem__DOT__memory[0x5555]) << std::endl;
+    dut->mem_assert_main = 1;
+    test_step_clk(0);
+}
+
+void lda_imm(unsigned char imm) {
+    dut->test_main_out = imm;
+    dut->test_main_en = 1;
+    dut->a_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->test_main_en = 0;
+    dut->a_load_main = 1;
+    std::cout << " lda_imm(" << std::hex << (int)imm << ") simtime: " << std::dec << sim_time << std::endl;
+} 
+void ldb_imm(unsigned char imm) {
+    dut->test_main_out = imm;
+    dut->test_main_en = 1;
+    dut->b_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->test_main_en = 0;
+    dut->b_load_main = 1;
+    std::cout << " ldb_imm(" << std::hex << (int)imm << ") simtime: " << std::dec << sim_time << std::endl;
+} 
+
+void mov_xferlow_a() {
+    dut->xfer_loadlow_main = 0;
+    dut->a_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->xfer_loadlow_main = 1;
+    dut->a_assert_main = 1;
+    std::cout << " mov_xferlow_a() simtime: " << std::dec << sim_time << std::endl;
+}
+void mov_xferhigh_a() {
+    dut->xfer_loadhigh_main = 0;
+    dut->a_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->xfer_loadhigh_main = 1;
+    dut->a_assert_main = 1;
+    std::cout << " mov_xferhigh_a() simtime: " << std::dec << sim_time << std::endl;
+}
+void mov_xferlow_b() {
+    dut->xfer_loadlow_main = 0;
+    dut->b_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->xfer_loadlow_main = 1;
+    dut->b_assert_main = 1;
+    std::cout << " mov_xferlow_b() simtime: " << std::dec << sim_time << std::endl;
+}
+void mov_xferhigh_b() {
+    dut->xfer_loadhigh_main = 0;
+    dut->b_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->xfer_loadhigh_main = 1;
+    dut->b_assert_main = 1;
+    std::cout << " mov_xferhigh_b() simtime: " << std::dec << sim_time << std::endl;
+}
+
+void mov_si_xfer() {
+    dut->xfer_assert_xfer = 0;
+    dut->si_load_xfer = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->xfer_assert_xfer = 1;
+    dut->si_load_xfer = 1;    
+    std::cout << " mov_si_xfer() simtime: " << std::dec << sim_time << std::endl;
+}
+void lda_ind_si() {
+    dut->si_assert_addr = 0;
+    dut->mem_assert_main = 0;
+    dut->mem_busdir = 1;
+    dut->a_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->si_assert_addr = 1;
+    dut->mem_assert_main = 1;
+    dut->mem_busdir = 0;
+    dut->a_load_main = 1;    
+    std::cout << " lda_ind_si() simtime: " << std::dec << sim_time << std::endl;
+}
+void sta_ind_si() {
+    dut->si_assert_addr = 0;
+    dut->mem_load_main = 0;
+    dut->mem_busdir = 0;
+    dut->a_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->si_assert_addr = 1;
+    dut->mem_load_main = 1;
+    dut->a_assert_main = 1;    
+    std::cout << " sta_ind_si() simtime: " << std::dec << sim_time << std::endl;
+}
+void ldb_ind_si() {
+    dut->si_assert_addr = 0;
+    dut->mem_assert_main = 0;
+    dut->mem_busdir = 1;
+    dut->b_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->si_assert_addr = 1;
+    dut->mem_assert_main = 1;
+    dut->mem_busdir = 0;
+    dut->b_load_main = 1;    
+    std::cout << " ldb_ind_si() simtime: " << std::dec << sim_time << std::endl;
+}
+void stb_ind_si() {
+    dut->si_assert_addr = 0;
+    dut->mem_load_main = 0;
+    dut->mem_busdir = 0;
+    dut->b_assert_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->si_assert_addr = 1;
+    dut->mem_load_main = 1;
+    dut->b_assert_main = 1;    
+    std::cout << " stb_ind_si() simtime: " << std::dec << sim_time << std::endl;
+}
+void add_a_b() {
+    dut->alu_operation = ALU_OP_ADD;
+    dut->a_assert_lhs = 0;
+    dut->b_assert_rhs = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->a_assert_lhs = 0;
+    dut->b_assert_rhs = 0;
+    std::cout << " add_a_b() [0] simtime: " << std::dec << sim_time << std::endl;
+
+    dut->alu_assert_main = 0;
+    dut->a_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->a_load_main = 1;  
+    dut->alu_assert_main = 1;
+    std::cout << " add_a_b() [1] simtime: " << std::dec << sim_time << std::endl;
+
+}
+void test_mem_reg_bus_alu() {
+    const char* test_name = "test_mem_reg_bus_alu";
+    test_init();
+
+    lda_imm(0x55);
+    ldb_imm(0xAA);
+
+    mov_xferlow_a();
+    mov_xferhigh_b();
+
+    mov_si_xfer();
+
+    lda_imm(0x13);
+    ldb_imm(0x08);
+
+    add_a_b();
+
+    sta_ind_si();
+
+    ldb_ind_si();
+}
 int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
@@ -242,10 +442,12 @@ int main(int argc, char** argv, char** env) {
     test_step();
 
     // test_basic_bus_register(); 
-    test_basic_alu();
+    // test_basic_alu();
+    // test_basic_mem();
+    test_mem_reg_bus_alu();
 
     for (int i = 0; i < 5; i++) {
-        test_step();
+        test_step_clk(1);
     }
 
     m_trace->close();

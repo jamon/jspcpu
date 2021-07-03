@@ -1,8 +1,10 @@
 `timescale 1ns/1ps
 `include "../register_gp/register_gp.v"
+`include "../register_const/register_const.v"
 `include "../register_xfer/register_xfer.v"
 `include "../register_addr/register_addr.v"
 `include "../bus/bus.v"
+`include "../mem/mem.v"
 `include "../alu/alu.v"
 
 module tests(
@@ -27,6 +29,10 @@ module tests(
             d_assert_lhs,
             d_assert_rhs,
 
+    // constant register control signals
+    input   const1_assert_main,
+            const1_load_mem,
+    
     // xfer register control signals
     input   xfer_assert_addr,
             xfer_assert_xfer, xfer_load_xfer,
@@ -49,6 +55,9 @@ module tests(
     input   di_assert_addr,
             di_assert_xfer, di_load_xfer,
             di_inc, di_dec,
+
+    input   mem_busdir,
+            mem_assert_main, mem_load_main,
 
     // alu
     input   alu_assert_main,
@@ -165,6 +174,26 @@ module tests(
         // rhs bus
         .assert_rhs(d_assert_rhs), .rhs_out(d_rhs_out), .rhs_en(d_rhs_en)
     );
+
+
+    // -----------> REGISTER CONST <------------
+    wire [WIDTH_MAIN-1:0] const1_main_out;
+    wire const1_main_en;
+
+    register_const #(.WIDTH(8)) const1 (
+        .clk(clk),
+
+        // mem bus
+        .bus_in(mem_out),
+        .load_bus(const1_load_mem),
+
+        // main bus
+        .assert_bus(const1_assert_main),
+        .bus_out(const1_main_out),
+        .bus_en(const1_main_en)
+    );
+
+
     // -----------> REGISTER XFER <------------
 
     wire [WIDTH_AX-1:0] xfer_addr_out;
@@ -335,6 +364,7 @@ module tests(
     );
 
 
+
   
     // -----------> ALU <------------
     wire [WIDTH_MAIN-1:0] alu_main_out;
@@ -360,15 +390,42 @@ module tests(
         .flags(alu_flags)
     );
 
+    // -----------> MEMORY <------------
+
+    wire [WIDTH_MAIN-1:0] mem_out;
+
+    wire [WIDTH_MAIN-1:0] mem_main_out;
+    wire mem_main_en;
+
+	mem #(.WIDTH(WIDTH_MAIN)) mem (
+		.clk(clk),
+
+		.addr_in(addr_out),
+
+		.bus_dir(mem_busdir), // low = main->mem ; high = mem->main
+
+		// main bus
+		.main_in(main_out),
+		.assert_main(mem_assert_main),
+		.load_main(mem_load_main),
+		.main_out(mem_main_out),
+		.main_en(mem_main_en),
+
+		// mem bus
+		.bus_out(mem_out)
+	);
+
     // -----------> BUS MAIN <------------
 
-	bus #(.WIDTH(WIDTH_MAIN),.COUNT(7)) mainbus (
+	bus #(.WIDTH(WIDTH_MAIN),.COUNT(9)) mainbus (
         .in({
             test_main_out,
             a_main_out,
             b_main_out,
             c_main_out,
             d_main_out,
+            const1_main_out,
+            mem_main_out,
             alu_main_out,
             xfer_main_out
         }),
@@ -378,6 +435,8 @@ module tests(
             b_main_en,
             c_main_en,
             d_main_en,
+            const1_main_en,
+            mem_main_en,
             alu_main_en,
             xfer_main_en
         }),
