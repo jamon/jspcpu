@@ -1,4 +1,4 @@
-MODULE=tests
+MODULE=core
 VERILATOR_BIN=verilator_bin
 
 .PHONY:sim
@@ -9,7 +9,7 @@ sim: ${MODULE}_tb.vcd
 verilate: .stamp.verilate
 
 .PHONY:build
-build: obj_dir/Valu
+build: obj_dir/V${MODULE}
 
 .PHONY:waves
 waves: ${MODULE}_tb.gtkw

@@ -7,7 +7,7 @@
 `include "../mem/mem.v"
 `include "../alu/alu.v"
 
-module tests(
+module core(
     input clk, reset,
 
     // test bus inputs

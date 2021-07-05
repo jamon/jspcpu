@@ -3,7 +3,7 @@
 #include <iostream>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vtests.h"
+#include "Vcore.h"
 
 #define FLAG_OVERFLOW 1
 #define FLAG_SIGN 1<<1
@@ -33,7 +33,7 @@
 
 // #define MAX_SIM_TIME 20
 vluint64_t sim_time = 0;
-Vtests *dut = new Vtests;
+Vcore *dut = new Vcore;
 VerilatedVcdC *m_trace = new VerilatedVcdC;
 
 
@@ -159,9 +159,9 @@ void test_basic_bus_register() {
     dut->pcra0_load_xfer = 0;
     dut->clk = 1;
     test_step();
-    if(dut->tests__DOT__pcra0__DOT__value != 0x5555) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__pcra0__DOT__value != 0x5555) std::cerr << "ERROR: " << test_name
             << " xfer -> pcra0"
-            << " expected pcra0 value = 0x5555 actual: " << std::hex << dut->tests__DOT__pcra0__DOT__value
+            << " expected pcra0 value = 0x5555 actual: " << std::hex << dut->core__DOT__pcra0__DOT__value
             << " simtime: " << std::dec << sim_time << std::endl;
     dut->clk = 0;
     test_step();        
@@ -173,9 +173,9 @@ void test_basic_bus_register() {
     dut->pcra0_inc = 0;
     dut->clk = 1;
     test_step();
-    if(dut->tests__DOT__pcra0__DOT__value != 0x5556) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__pcra0__DOT__value != 0x5556) std::cerr << "ERROR: " << test_name
             << " pcra0++ "
-            << " expected pcra0 value = 0x5556 actual: " << std::hex << dut->tests__DOT__pcra0__DOT__value
+            << " expected pcra0 value = 0x5556 actual: " << std::hex << dut->core__DOT__pcra0__DOT__value
             << " simtime: " << std::dec << sim_time << std::endl;
     dut->clk = 0;
     test_step();
@@ -194,9 +194,9 @@ void test_basic_alu() {
     dut->test_main_en = 1;
     dut->a_load_main = 0;
     test_step_clk(1);
-    if(dut->tests__DOT__a__DOT__value != 0x55) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__a__DOT__value != 0x55) std::cerr << "ERROR: " << test_name
             << " a <= 0x55"
-            << " expected a = 0x55 actual: " << std::hex << dut->tests__DOT__a__DOT__value
+            << " expected a = 0x55 actual: " << std::hex << dut->core__DOT__a__DOT__value
             << " simtime: " << std::dec << sim_time << std::endl;
     test_step_clk(0);
     dut->test_main_en = 0;
@@ -207,9 +207,9 @@ void test_basic_alu() {
     dut->test_main_en = 1;
     dut->b_load_main = 0;
     test_step_clk(1);
-    if(dut->tests__DOT__b__DOT__value != 0x06) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__b__DOT__value != 0x06) std::cerr << "ERROR: " << test_name
             << " a <= 0x06"
-            << " expected a = 0x06 actual: " << std::hex << dut->tests__DOT__b__DOT__value
+            << " expected a = 0x06 actual: " << std::hex << dut->core__DOT__b__DOT__value
             << " simtime: " << std::dec << sim_time << std::endl;
     test_step_clk(0);
     dut->test_main_en = 0;
@@ -219,9 +219,9 @@ void test_basic_alu() {
     dut->a_assert_lhs = 0;
     dut->b_assert_rhs = 0;
     test_step_clk(1);
-    if(dut->tests__DOT__alu__DOT__result != 0x05B) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__alu__DOT__result != 0x05B) std::cerr << "ERROR: " << test_name
             << " a + b (alu.result)"
-            << " expected a = 0x05B actual: " << std::hex << dut->tests__DOT__alu__DOT__result
+            << " expected a = 0x05B actual: " << std::hex << dut->core__DOT__alu__DOT__result
             << " simtime: " << std::dec << sim_time << std::endl;
     test_step_clk(0);
     dut->alu_operation = ALU_OP_NOOP;
@@ -231,9 +231,9 @@ void test_basic_alu() {
     dut->alu_assert_main = 0;
     dut->c_load_main = 0;
     test_step_clk(1);
-    if(dut->tests__DOT__c__DOT__value != 0x5B) std::cerr << "ERROR: " << test_name
+    if(dut->core__DOT__c__DOT__value != 0x5B) std::cerr << "ERROR: " << test_name
             << " c <= a + b"
-            << " expected a = 0x5B actual: " << std::hex << dut->tests__DOT__c__DOT__value
+            << " expected a = 0x5B actual: " << std::hex << dut->core__DOT__c__DOT__value
             << " simtime: " << std::dec << sim_time << std::endl;
     test_step_clk(0);
     dut->c_load_main = 1;
@@ -272,7 +272,7 @@ void test_basic_mem() {
             << " [0x5555] == 0x55"
             << " expected main_out = 0x55 actual: 0x" << std::hex << (int)(dut->main_out)
             << " simtime: " << std::dec << sim_time << std::endl;
-    // std::cout << "[0x5555] = " << std::hex << (int)(dut->tests__DOT__mem__DOT__memory[0x5555]) << std::endl;
+    // std::cout << "[0x5555] = " << std::hex << (int)(dut->core__DOT__mem__DOT__memory[0x5555]) << std::endl;
     dut->mem_assert_main = 1;
     test_step_clk(0);
 }
@@ -454,7 +454,7 @@ int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
     Verilated::traceEverOn(true);
     dut->trace(m_trace, 5);
-    m_trace->open("tests_tb.vcd");
+    m_trace->open("core_tb.vcd");
 
     test_init();
     test_step();
