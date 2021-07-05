@@ -7,7 +7,6 @@ module pipeline_stage0 #(
     input flag_pcraflip,
 
     input [WIDTH-1:0] bus_in,
-    input load_bus,
 
     output [WIDTH-1:0] instruction_out,
     
@@ -16,13 +15,13 @@ module pipeline_stage0 #(
     reg [WIDTH-1:0] prev_instruction;
 
     always @(posedge clk) begin
-        prev_instruction <= instruction;
+        prev_instruction <= bus_in;
     end
 
     // need to explain this in comments
     assign instruction_out =
         (bus_request == 1 && fetch_suppress == 1) ? prev_instruction
-        : (bus_request == 0 && fetch_suppress == 0) ? instruction
+        : (bus_request == 0 && fetch_suppress == 0) ? bus_in
         : 0;
 
     // need to explain this in comments
