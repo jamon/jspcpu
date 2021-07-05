@@ -11,6 +11,8 @@
 #define FLAG_CARRYA 1<<3
 #define FLAG_CARRYL 1<<4
 #define FLAG_PCRAFLIP 1<<5
+
+
 #define ALU_OP_NOOP 0x0
 #define ALU_OP_SHL  0x1
 #define ALU_OP_SHR  0x2
@@ -392,6 +394,20 @@ void stb_ind_si() {
     dut->b_assert_main = 1;    
     std::cout << " stb_ind_si() simtime: " << std::dec << sim_time << std::endl;
 }
+
+void ldb_ind_di() {
+    dut->di_assert_addr = 0;
+    dut->mem_assert_main = 0;
+    dut->mem_busdir = 1;
+    dut->b_load_main = 0;
+    test_step_clk(0);
+    test_step_clk(1);
+    dut->di_assert_addr = 1;
+    dut->mem_assert_main = 1;
+    dut->mem_busdir = 0;
+    dut->b_load_main = 1;    
+    std::cout << " ldb_ind_di() simtime: " << std::dec << sim_time << std::endl;
+}
 void add_a_b() {
     dut->alu_operation = ALU_OP_ADD;
     dut->a_assert_lhs = 0;
@@ -429,6 +445,8 @@ void test_mem_reg_bus_alu() {
     add_a_b();
 
     sta_ind_si();
+
+    ldb_ind_di();
 
     ldb_ind_si();
 }

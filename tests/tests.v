@@ -65,7 +65,7 @@ module tests(
 
     // bus outputs
     output  [WIDTH_AX-1:0] addr_out, xfer_out,
-    output  [WIDTH_MAIN-1:0] main_out, lhs_out, rhs_out
+    output  [WIDTH_MAIN-1:0] main_out, lhs_out, rhs_out, mem_out
 
 );
     localparam WIDTH_AX = 16; // bus width for addr and xfer bus in bits
@@ -392,7 +392,7 @@ module tests(
 
     // -----------> MEMORY <------------
 
-    wire [WIDTH_MAIN-1:0] mem_out;
+    // wire [WIDTH_MAIN-1:0] mem_out;
 
     wire [WIDTH_MAIN-1:0] mem_main_out;
     wire mem_main_en;
