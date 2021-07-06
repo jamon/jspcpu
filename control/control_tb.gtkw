@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.77 (w)1999-2016 BSI
-[*] Tue Jul 06 05:24:29 2021
+[*] Tue Jul 06 05:44:36 2021
 [*]
 [dumpfile] "C:\Users\ms\Documents\code\jspcpu\control\control_tb.vcd"
-[dumpfile_mtime] "Tue Jul 06 05:17:29 2021"
+[dumpfile_mtime] "Tue Jul 06 05:31:06 2021"
 [dumpfile_size] 10722
 [savefile] "C:\Users\ms\Documents\code\jspcpu\control\control_tb.gtkw"
-[timestart] 0
+[timestart] 3
 [size] 1707 897
-[pos] -1 -1
-*-1.834356 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -9 -9
+*-1.203284 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] TOP.
 [treeopen] TOP.control.
-[sst_width] 246
-[signals_width] 337
+[sst_width] 197
+[signals_width] 298
 [sst_expanded] 1
-[sst_vpaned_height] 257
+[sst_vpaned_height] 255
 @28
 [color] 3
 TOP.control.clk
@@ -39,9 +39,7 @@ TOP.control.flag_pcraflip
 TOP.control.flag_lcarry
 TOP.control.flag_acarry
 TOP.control.flag_zero
-@29
 TOP.control.flag_sign
-@28
 TOP.control.flag_overflow
 @200
 -
@@ -68,7 +66,7 @@ TOP.control.control_inc_pcra1
 @28
 [color] 3
 TOP.control.clk
-@2024
+@2025
 [color] 2
 ^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
 TOP.control.pipeline_stage1.prev_instruction[7:0]

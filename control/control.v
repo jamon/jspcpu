@@ -9,7 +9,7 @@ module control #(
     input [WIDTH-1:0] bus_in,
     input  flag_reset, /* flag_pcraflip, */ flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow,
 
-    output control_inc_pcra0, control_inc_pcra1,
+    output pcra0_inc, pcra1_inc,
 
 
     // stage 1 - grouped
@@ -20,6 +20,12 @@ module control #(
     output [3:0] aluop_select,
     output [3:0] xferload_select,
     output [2:0] xferassert_select,
+
+    // stage 1 - individual
+    output a_assert_lhs, b_assert_lhs, c_assert_lhs, d_assert_lhs,
+    output a_assert_rhs, b_assert_rhs, c_assert_rhs, d_assert_rhs,
+    output pcra0_load_xfer, pcra1_load_xfer, sp_load_xfer, si_load_xfer, di_load_xfer, xfer_load_xfer, const_load_mem, pcra0_dec, pcra1_dec, sp_dec, si_dec, di_dec,
+    output pcra0_assert_xfer, pcra1_assert_xfer, sp_assert_xfer, si_assert_xfer, di_assert_xfer, xfer_assert_xfer, xfer_assert_mode,
     output fetch_suppress_out,
 
     // stage 2 - grouped
@@ -31,10 +37,10 @@ module control #(
     output [2:0] addr_select,
 
     // stage 2 - individual
-    output a_assert_main, b_assert_main, c_assert_main, d_assert_main, const_assert_main, tl_assert_main, th_assert_main, alu_assert_main, dev9_assert_main, dev10_assert_main, dev11_assert_main, dev12_assert_main, dev13_assert_main, dev14_assert_main, mem_assert_main,
-    output a_load_main, b_load_main, c_load_main, d_load_main, const_load_main, tl_load_main, th_load_main, alu_load_main, dev9_load_main, dev10_load_main, dev11_load_main, dev12_load_main, dev13_load_main, dev14_load_main, mem_load_main,
+    output a_assert_main, b_assert_main, c_assert_main, d_assert_main, const_assert_main, xfer_assertlow_main, xfer_asserthigh_main, alu_assert_main, dev9_assert_main, dev10_assert_main, dev11_assert_main, dev12_assert_main, dev13_assert_main, dev14_assert_main, mem_assert_main,
+    output a_load_main, b_load_main, c_load_main, d_load_main, const_load_main, xfer_loadlow_main, xfer_loadhigh_main, alu_load_main, dev9_load_main, dev10_load_main, dev11_load_main, dev12_load_main, dev13_load_main, dev14_load_main, mem_load_main, mem_dir,
     output sp_inc, si_inc, di_inc,
-    output mem_ack, pcra0_assert_addr, pcra1_assert_addr, sp_assert_addr, si_assert_addr, di_assert_addr, tx_assert_addr,
+    output mem_ack, pcra0_assert_addr, pcra1_assert_addr, sp_assert_addr, si_assert_addr, di_assert_addr, xfer_assert_addr,
     output bus_request_out,
     output pcra_flip_out,
     output break_out
@@ -53,8 +59,8 @@ module control #(
 
         .bus_in(bus_in),
         .instruction_out(stage0_instruction_out),
-        .inc_pcra0(control_inc_pcra0),
-        .inc_pcra1(control_inc_pcra1)    
+        .inc_pcra0(pcra0_inc),
+        .inc_pcra1(pcra1_inc)    
     );
 
 
@@ -78,12 +84,51 @@ module control #(
         .instruction_out(stage1_instruction_out),
         .controls_out(control_stage1),
 
+        // controls - grouped
         .lhs_select(lhs_select),
         .rhs_select(rhs_select),
         .aluop_select(aluop_select),
         .xferload_select(xferload_select),
         .xferassert_select(xferassert_select),
+
+
+        // controls - individual
+        .a_assert_lhs(a_assert_lhs),
+        .b_assert_lhs(b_assert_lhs),
+        .c_assert_lhs(c_assert_lhs),
+        .d_assert_lhs(d_assert_lhs),
+
+        .a_assert_rhs(a_assert_rhs),
+        .b_assert_rhs(b_assert_rhs),
+        .c_assert_rhs(c_assert_rhs),
+        .d_assert_rhs(d_assert_rhs),
+        
+        .pcra0_load_xfer(pcra0_load_xfer),
+        .pcra1_load_xfer(pcra1_load_xfer),
+        .sp_load_xfer(sp_load_xfer),
+        .si_load_xfer(si_load_xfer),
+        .di_load_xfer(di_load_xfer),
+        .tx_load_xfer(xfer_load_xfer),
+        
+        .const_load_mem(const_load_mem),
+        
+        .pcra0_dec(pcra0_dec),
+        .pcra1_dec(pcra1_dec),
+        .sp_dec(sp_dec),
+        .si_dec(si_dec),
+        .di_dec(di_dec),
+        
+        .pcra0_assert_xfer(pcra0_assert_xfer),
+        .pcra1_assert_xfer(pcra1_assert_xfer),
+        .sp_assert_xfer(sp_assert_xfer),
+        .si_assert_xfer(si_assert_xfer),
+        .di_assert_xfer(di_assert_xfer),
+        .tx_assert_xfer(xfer_assert_xfer),
+        .tx_assert_mode(xfer_assert_mode),
+        
         .fetch_suppress_out(fetch_suppress_out)
+
+
     );
 
     // verilator lint_off UNUSED
@@ -121,8 +166,8 @@ module control #(
         .c_assert_main(c_assert_main),
         .d_assert_main(d_assert_main),
         .const_assert_main(const_assert_main),
-        .tl_assert_main(tl_assert_main),
-        .th_assert_main(th_assert_main),
+        .tl_assert_main(xfer_assertlow_main),
+        .th_assert_main(xfer_asserthigh_main),
         .alu_assert_main(alu_assert_main),
         .dev9_assert_main(dev9_assert_main),
         .dev10_assert_main(dev10_assert_main),
@@ -137,8 +182,8 @@ module control #(
         .c_load_main(c_load_main),
         .d_load_main(d_load_main),
         .const_load_main(const_load_main),
-        .tl_load_main(tl_load_main),
-        .th_load_main(th_load_main),
+        .tl_load_main(xfer_loadlow_main),
+        .th_load_main(xfer_loadhigh_main),
         .alu_load_main(alu_load_main),
         .dev9_load_main(dev9_load_main),
         .dev10_load_main(dev10_load_main),
@@ -147,6 +192,7 @@ module control #(
         .dev13_load_main(dev13_load_main),
         .dev14_load_main(dev14_load_main),
         .mem_load_main(mem_load_main),
+        .mem_dir(mem_dir),
 
         .sp_inc(sp_inc),
         .si_inc(si_inc),
@@ -158,7 +204,7 @@ module control #(
         .sp_assert_addr(sp_assert_addr),
         .si_assert_addr(si_assert_addr),
         .di_assert_addr(di_assert_addr),
-        .tx_assert_addr(tx_assert_addr)
+        .tx_assert_addr(xfer_assert_addr)
     );
 
     wire bus_request = control_stage2[13];

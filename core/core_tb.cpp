@@ -78,8 +78,8 @@ void test_init() {
     dut->d_assert_lhs = 1;
     dut->d_assert_rhs = 1;
 
-    dut->const1_assert_main = 1;
-    dut->const1_load_mem = 1;
+    dut->const_assert_main = 1;
+    dut->const_load_mem = 1;
 
     dut->mem_assert_main = 1;
     dut->mem_load_main = 1;
@@ -251,7 +251,7 @@ void test_basic_mem() {
     dut->test_addr_en = 1;
     dut->test_main_out = 0x55;
     dut->test_main_en = 1;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->mem_load_main = 0;
     test_step_clk(0);
 
@@ -259,7 +259,7 @@ void test_basic_mem() {
     // if(dut->xfer_out != 0x5555) std::cerr << "ERROR: " << test_name
     //         << " expected xfer_out = 0x5555 actual: " << std::hex << dut->xfer_out
     //         << " simtime: " << std::dec << sim_time << std::endl;
-    dut->mem_busdir = 1;
+    dut->mem_dir = 1;
     dut->mem_load_main = 1;
     // dut->test_addr_en = 0;
     dut->test_main_en = 0;
@@ -347,20 +347,20 @@ void mov_si_xfer() {
 void lda_ind_si() {
     dut->si_assert_addr = 0;
     dut->mem_assert_main = 0;
-    dut->mem_busdir = 1;
+    dut->mem_dir = 1;
     dut->a_load_main = 0;
     test_step_clk(0);
     test_step_clk(1);
     dut->si_assert_addr = 1;
     dut->mem_assert_main = 1;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->a_load_main = 1;    
     std::cout << " lda_ind_si() simtime: " << std::dec << sim_time << std::endl;
 }
 void sta_ind_si() {
     dut->si_assert_addr = 0;
     dut->mem_load_main = 0;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->a_assert_main = 0;
     test_step_clk(0);
     test_step_clk(1);
@@ -372,20 +372,20 @@ void sta_ind_si() {
 void ldb_ind_si() {
     dut->si_assert_addr = 0;
     dut->mem_assert_main = 0;
-    dut->mem_busdir = 1;
+    dut->mem_dir = 1;
     dut->b_load_main = 0;
     test_step_clk(0);
     test_step_clk(1);
     dut->si_assert_addr = 1;
     dut->mem_assert_main = 1;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->b_load_main = 1;    
     std::cout << " ldb_ind_si() simtime: " << std::dec << sim_time << std::endl;
 }
 void stb_ind_si() {
     dut->si_assert_addr = 0;
     dut->mem_load_main = 0;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->b_assert_main = 0;
     test_step_clk(0);
     test_step_clk(1);
@@ -398,13 +398,13 @@ void stb_ind_si() {
 void ldb_ind_di() {
     dut->di_assert_addr = 0;
     dut->mem_assert_main = 0;
-    dut->mem_busdir = 1;
+    dut->mem_dir = 1;
     dut->b_load_main = 0;
     test_step_clk(0);
     test_step_clk(1);
     dut->di_assert_addr = 1;
     dut->mem_assert_main = 1;
-    dut->mem_busdir = 0;
+    dut->mem_dir = 0;
     dut->b_load_main = 1;    
     std::cout << " ldb_ind_di() simtime: " << std::dec << sim_time << std::endl;
 }

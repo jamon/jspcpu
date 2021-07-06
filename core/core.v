@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 `include "../register_gp/register_gp.v"
 `include "../register_const/register_const.v"
 `include "../register_xfer/register_xfer.v"
@@ -11,9 +10,11 @@ module core(
     input clk, reset,
 
     // test bus inputs
+    // verilator lint_off PINMISSING
     input [WIDTH_MAIN-1:0] test_main_out,
     input [WIDTH_AX-1:0] test_addr_out, test_xfer_out,
     input test_main_en, test_addr_en, test_xfer_en,
+    // verilator lint_on PINMISSING
 
     // 8 bit register control signals
     input   a_assert_main, a_load_main,
@@ -30,8 +31,8 @@ module core(
             d_assert_rhs,
 
     // constant register control signals
-    input   const1_assert_main,
-            const1_load_mem,
+    input   const_assert_main,
+            const_load_mem,
     
     // xfer register control signals
     input   xfer_assert_addr,
@@ -56,7 +57,7 @@ module core(
             di_assert_xfer, di_load_xfer,
             di_inc, di_dec,
 
-    input   mem_busdir,
+    input   mem_dir,
             mem_assert_main, mem_load_main,
 
     // alu
@@ -64,8 +65,10 @@ module core(
     input   [3:0] alu_operation,
 
     // bus outputs
+    // verilator lint_off PINMISSING
     output  [WIDTH_AX-1:0] addr_out, xfer_out,
     output  [WIDTH_MAIN-1:0] main_out, lhs_out, rhs_out, mem_out
+    // verilator lint_off PINMISSING
 
 );
     localparam WIDTH_AX = 16; // bus width for addr and xfer bus in bits
@@ -177,20 +180,20 @@ module core(
 
 
     // -----------> REGISTER CONST <------------
-    wire [WIDTH_MAIN-1:0] const1_main_out;
-    wire const1_main_en;
+    wire [WIDTH_MAIN-1:0] const_main_out;
+    wire const_main_en;
 
     register_const #(.WIDTH(8)) const1 (
         .clk(clk),
 
         // mem bus
         .bus_in(mem_out),
-        .load_bus(const1_load_mem),
+        .load_bus(const_load_mem),
 
         // main bus
-        .assert_bus(const1_assert_main),
-        .bus_out(const1_main_out),
-        .bus_en(const1_main_en)
+        .assert_bus(const_assert_main),
+        .bus_out(const_main_out),
+        .bus_en(const_main_en)
     );
 
 
@@ -402,7 +405,7 @@ module core(
 
 		.addr_in(addr_out),
 
-		.bus_dir(mem_busdir), // low = main->mem ; high = mem->main
+		.bus_dir(mem_dir), // low = main->mem ; high = mem->main
 
 		// main bus
 		.main_in(main_out),
@@ -424,7 +427,7 @@ module core(
             b_main_out,
             c_main_out,
             d_main_out,
-            const1_main_out,
+            const_main_out,
             mem_main_out,
             alu_main_out,
             xfer_main_out
@@ -435,7 +438,7 @@ module core(
             b_main_en,
             c_main_en,
             d_main_en,
-            const1_main_en,
+            const_main_en,
             mem_main_en,
             alu_main_en,
             xfer_main_en

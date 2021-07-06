@@ -1,0 +1,152 @@
+[*]
+[*] GTKWave Analyzer v3.3.77 (w)1999-2016 BSI
+[*] Tue Jul 06 22:13:31 2021
+[*]
+[dumpfile] "C:\Users\ms\Documents\code\jspcpu\cpu_tb.vcd"
+[dumpfile_mtime] "Tue Jul 06 22:02:43 2021"
+[dumpfile_size] 38506
+[savefile] "C:\Users\ms\Documents\code\jspcpu\cpu_tb.gtkw"
+[timestart] 0
+[size] 1707 897
+[pos] -1 -1
+*-2.203284 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.cpu.
+[treeopen] TOP.cpu.control.
+[treeopen] TOP.cpu.core.
+[sst_width] 239
+[signals_width] 298
+[sst_expanded] 1
+[sst_vpaned_height] 255
+@28
+[color] 3
+TOP.cpu.control.clk
+@200
+-
+-
+-registers
+@22
++{PCRA0} TOP.cpu.core.pcra0.value[15:0]
++{PCRA1} TOP.cpu.core.pcra1.value[15:0]
++{SP} TOP.cpu.core.sp.value[15:0]
++{SI} TOP.cpu.core.si.value[15:0]
++{DI} TOP.cpu.core.di.value[15:0]
+@200
+-
+@22
++{XFER} TOP.cpu.core.xfer.value[15:0]
+@200
+-
+@22
++{A} TOP.cpu.core.a.value[7:0]
++{B} TOP.cpu.core.b.value[7:0]
++{C} TOP.cpu.core.c.value[7:0]
++{D} TOP.cpu.core.d.value[7:0]
++{CONST} TOP.cpu.core.const1.value[7:0]
+@200
+-
+-busses
+@22
++{addr} TOP.cpu.core.addrbus.out[15:0]
++{xfer} TOP.cpu.core.xferbus.out[15:0]
++{mem} TOP.cpu.core.mem.main_out[7:0]
++{main} TOP.cpu.core.mainbus.out[7:0]
++{lhs} TOP.cpu.core.lhsbus.out[7:0]
++{rhs} TOP.cpu.core.rhsbus.out[7:0]
+@200
+-
+@2024
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.stage0_instruction_out[7:0]
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.stage1_instruction_out[7:0]
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.stage2_instruction_out[7:0]
+@200
+-
+@28
+TOP.cpu.control.flag_reset
+TOP.cpu.control.flag_pcraflip
+TOP.cpu.control.flag_lcarry
+TOP.cpu.control.flag_acarry
+TOP.cpu.control.flag_zero
+TOP.cpu.control.flag_sign
+TOP.cpu.control.flag_overflow
+@200
+-
+-stage 0
+@28
+[color] 3
+TOP.cpu.control.clk
+@2024
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.pipeline_stage0.bus_in[7:0]
+@28
+TOP.cpu.control.pipeline_stage0.fetch_suppress
+TOP.cpu.control.pipeline_stage0.bus_request
+@2024
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.pipeline_stage0.instruction_out[7:0]
+@28
+TOP.cpu.control.pipeline_stage0.inc_pcra0
+TOP.cpu.control.pipeline_stage0.inc_pcra1
+@200
+-
+-stage 1
+@28
+[color] 3
+TOP.cpu.control.clk
+@2024
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.pipeline_stage1.prev_instruction[7:0]
+@28
+TOP.cpu.control.pipeline_stage1.bus_request
+TOP.cpu.control.pipeline_stage1.fetch_suppress
+@c02024
+^2 C:\Users\ms\Documents\code\jspcpu\control\lhsrhs.txt
+TOP.cpu.control.lhs_select[1:0]
+@28
+(0)TOP.cpu.control.lhs_select[1:0]
+(1)TOP.cpu.control.lhs_select[1:0]
+@1401200
+-group_end
+@2024
+^2 C:\Users\ms\Documents\code\jspcpu\control\lhsrhs.txt
+TOP.cpu.control.rhs_select[1:0]
+@22
+TOP.cpu.control.aluop_select[3:0]
+@2024
+^3 C:\Users\ms\Documents\code\jspcpu\control\xfer_load.txt
+TOP.cpu.control.xferload_select[3:0]
+^4 C:\Users\ms\Documents\code\jspcpu\control\xfer_assert.txt
+TOP.cpu.control.xferassert_select[2:0]
+@200
+-
+-Stage 2
+@28
+[color] 3
+TOP.cpu.control.clk
+@2024
+[color] 2
+^1 C:\Users\ms\Documents\code\jspcpu\control\opcodes.txt
+TOP.cpu.control.pipeline_stage2.prev_instruction[7:0]
+^5 C:\Users\ms\Documents\code\jspcpu\control\gpregs.txt
+TOP.cpu.control.mainbus_assert_select[3:0]
+^5 C:\Users\ms\Documents\code\jspcpu\control\gpregs.txt
+TOP.cpu.control.mainbus_load_select[3:0]
+^6 C:\Users\ms\Documents\code\jspcpu\control\spsidi_inc.txt
+TOP.cpu.control.spsidi_inc_select[1:0]
+@2025
+^7 C:\Users\ms\Documents\code\jspcpu\control\addr_select.txt
+TOP.cpu.control.addr_select[2:0]
+@28
+TOP.cpu.control.bus_request_out
+TOP.cpu.control.pcra_flip_out
+TOP.cpu.control.break_out
+[pattern_trace] 1
+[pattern_trace] 0
