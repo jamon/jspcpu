@@ -23,6 +23,13 @@ void test_step_clk(unsigned int clk) {
 
 void test_init() {
     dut->clk = 0;
+    dut->bus_in = 0;
+    dut->flag_reset = 0;
+    dut->flag_lcarry = 0;
+    dut->flag_acarry = 0;
+    dut->flag_zero = 1;
+    dut->flag_sign = 0;
+    dut->flag_overflow = 0;
 }
 
 
@@ -38,9 +45,15 @@ void test_init() {
 //     std::cout << " lda_imm(" << std::hex << (int)imm << ") simtime: " << std::dec << sim_time << std::endl;
 // } 
 
-void test_control() {
+void test_control(unsigned char instruction) {
     const char* test_name = "test_control";
     test_init();
+
+    std::cout << test_name << " instruction: 0x" << std::hex << (int)instruction << std::endl;
+    dut->bus_in = instruction;
+    test_step_clk(0);
+    test_step_clk(1);
+
 }
 
 int main(int argc, char** argv, char** env) {
@@ -50,12 +63,13 @@ int main(int argc, char** argv, char** env) {
     m_trace->open("control_tb.vcd");
 
     test_init();
-    test_step_clk(1);
+    test_step_clk(0);
 
-    test_control();
+    test_control(0x00);
+    test_control(0x01);
 
     for (int i = 0; i < 5; i++) {
-        test_step_clk(1);
+        test_control(0x00);
     }
 
     m_trace->close();

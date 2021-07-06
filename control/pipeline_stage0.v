@@ -14,7 +14,7 @@ module pipeline_stage0 #(
 );
     reg [WIDTH-1:0] prev_instruction;
 
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         prev_instruction <= bus_in;
     end
 
