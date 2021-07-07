@@ -9,7 +9,9 @@ module cpu #(
 
     input [WIDTH_MAIN-1:0] test_main_out,
     input [WIDTH_AX-1:0] test_addr_out, test_xfer_out,
-    input test_main_en, test_addr_en, test_xfer_en
+    input test_main_en, test_addr_en, test_xfer_en,
+
+    output [WIDTH_MAIN-1:0] mem_out
 );
     // stage 0 - individual
     wire pcra0_inc;
@@ -186,7 +188,7 @@ module cpu #(
     wire flag_zero;
     wire flag_sign;
     wire flag_overflow;
-    wire [WIDTH_MAIN-1:0] mem_out;
+    // wire [WIDTH_MAIN-1:0] mem_out;
 
     core core(
         .clk(clk),
