@@ -1,10 +1,15 @@
 `include "control/control.v"
 `include "core/core.v"
 module cpu #(
-    parameter WIDTH = 8
+    parameter WIDTH_MAIN = 8,
+    parameter WIDTH_AX = 16
 ) (
     input clk,
-    input reset
+    input reset,
+
+    input [WIDTH_MAIN-1:0] test_main_out,
+    input [WIDTH_AX-1:0] test_addr_out, test_xfer_out,
+    input test_main_en, test_addr_en, test_xfer_en
 );
     // stage 0 - individual
     wire pcra0_inc;
@@ -176,16 +181,21 @@ module cpu #(
     );
 
     wire flag_reset = 0;
-    wire flag_lcarry = 0;
-    wire flag_acarry = 0;
-    wire flag_zero = 0;
-    wire flag_sign = 0;
-    wire flag_overflow = 0;
-    wire [WIDTH-1:0] mem_out = 0;
+    wire flag_lcarry;
+    wire flag_acarry;
+    wire flag_zero;
+    wire flag_sign;
+    wire flag_overflow;
+    wire [WIDTH_MAIN-1:0] mem_out;
 
     core core(
         .clk(clk),
         .reset(reset),
+
+        // test inputs
+        .test_main_out(test_main_out), .test_main_en(test_main_en),
+        .test_addr_out(test_addr_out), .test_addr_en(test_addr_en),
+        .test_xfer_out(test_xfer_out), .test_xfer_en(test_xfer_en),
 
         // A
         .a_assert_main(a_assert_main), .a_load_main(a_load_main),
@@ -249,6 +259,11 @@ module cpu #(
         // ALU
         .alu_assert_main(alu_assert_main),
         .alu_operation(aluop_select),
+        .flag_lcarry(flag_lcarry),
+        .flag_acarry(flag_acarry),
+        .flag_zero(flag_zero),
+        .flag_sign(flag_sign),
+        .flag_overflow(flag_overflow),
 
         // MEM
 		.mem_dir(mem_dir), // low = main->mem ; high = mem->main

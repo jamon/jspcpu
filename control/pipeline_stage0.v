@@ -25,7 +25,8 @@ module pipeline_stage0 #(
         : 0;
 
     // need to explain this in comments
-    assign inc_pcra0 = flag_pcraflip;
-    assign inc_pcra1 = bus_request;
+    wire [1:0] pcra_inc_select = {bus_request, flag_pcraflip};
+    assign inc_pcra0 = pcra_inc_select == 2'h0 ? 0 : 1;
+    assign inc_pcra1 = pcra_inc_select == 2'h1 ? 0 : 1;
 
 endmodule

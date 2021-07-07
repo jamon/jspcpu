@@ -24,6 +24,15 @@ void test_step_clk(unsigned int clk) {
 void test_init() {
     dut->clk = 0;
     dut->reset = 0;
+
+    dut->test_main_out = 0;
+    dut->test_main_en = 0;
+
+    dut->test_addr_out = 0;
+    dut->test_addr_en = 0;
+
+    dut->test_xfer_out = 0;
+    dut->test_xfer_en = 0;
 }
 
 
@@ -50,11 +59,10 @@ void test_init() {
 
 // }
 void load_program() {
-    dut->cpu__DOT__core__DOT__mem__DOT__memory[0] = 0x02;
-    dut->cpu__DOT__core__DOT__mem__DOT__memory[1] = 2;
-    dut->cpu__DOT__core__DOT__mem__DOT__memory[2] = 0xff;
-    dut->cpu__DOT__core__DOT__mem__DOT__memory[3] = 0x07;
-    dut->cpu__DOT__core__DOT__pcra0__DOT__value = 0;
+    dut->cpu__DOT__core__DOT__mem__DOT__memory[0] = 0x00;   // NOP
+    dut->cpu__DOT__core__DOT__mem__DOT__memory[1] = 0x01;   // LD A, #
+    dut->cpu__DOT__core__DOT__mem__DOT__memory[2] = 255;    // 255   
+    dut->cpu__DOT__core__DOT__mem__DOT__memory[3] = 0x07;   // MOV A, B
 }
 int main(int argc, char** argv, char** env) {
     Verilated::commandArgs(argc, argv);
@@ -70,7 +78,7 @@ int main(int argc, char** argv, char** env) {
     // test_control(0x00);
     // test_control(0x01);
 
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 1000000; i++) {
         test_step_clk(0);
         test_step_clk(1);
     }

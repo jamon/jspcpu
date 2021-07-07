@@ -10,11 +10,9 @@ module core(
     input clk, reset,
 
     // test bus inputs
-    // verilator lint_off PINMISSING
     input [WIDTH_MAIN-1:0] test_main_out,
     input [WIDTH_AX-1:0] test_addr_out, test_xfer_out,
     input test_main_en, test_addr_en, test_xfer_en,
-    // verilator lint_on PINMISSING
 
     // 8 bit register control signals
     input   a_assert_main, a_load_main,
@@ -63,6 +61,7 @@ module core(
     // alu
     input   alu_assert_main,
     input   [3:0] alu_operation,
+    output  flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow,
 
     // bus outputs
     // verilator lint_off PINMISSING
@@ -374,7 +373,7 @@ module core(
     wire alu_main_en;
 
     // verilator lint_off UNUSED
-    wire alu_flag_lcarry, alu_flag_acarry, alu_flag_zero, alu_flag_sign, alu_flag_overflow; 
+    // wire alu_flag_lcarry, alu_flag_acarry, alu_flag_zero, alu_flag_sign, alu_flag_overflow; 
     wire [4:0] alu_flags;
     // verilator lint_on UNUSED
 
@@ -389,7 +388,7 @@ module core(
         .assert_bus(alu_assert_main),
         .bus_out(alu_main_out), .bus_en(alu_main_en),
 
-        .flag_lcarry(alu_flag_lcarry), .flag_acarry(alu_flag_acarry), .flag_zero(alu_flag_zero), .flag_sign(alu_flag_sign), .flag_overflow(alu_flag_overflow),
+        .flag_lcarry(flag_lcarry), .flag_acarry(flag_acarry), .flag_zero(flag_zero), .flag_sign(flag_sign), .flag_overflow(flag_overflow),
         .flags(alu_flags)
     );
 

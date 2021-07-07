@@ -13,15 +13,16 @@ module register_addr #(
     reg [WIDTH-1:0] value = DEFAULT_VALUE;
 
     // do everything at a clock edge to make timing more predictable
-    always @(posedge clk) begin
+    always @(negedge clk) begin
         // $display("  r: %b l: %b, inc: %b, dec: %b", reset, load_xfer, inc, dec);
 
-        value <= !reset ? 0 :            // reset
+        value <= reset ? 0 :            // reset
                 !load_xfer ? xfer_in :   // load
                 !inc ? value + 1 :       // inc
                 !dec ? value - 1 :       // dec
                 value;                  // no change
     end
+    
 
     // note that the bus takes care enable behavior, so we just output the data at all times
     assign addr_out = value;

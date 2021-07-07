@@ -11,7 +11,6 @@ module mem #(
     
     // addr bus
     input [WIDTH_ADDR-1:0] addr_in,
-
     input bus_dir, // low = main -> mem ; high = mem -> main
 
     input [WIDTH-1:0] main_in,
@@ -24,7 +23,8 @@ module mem #(
     output [WIDTH-1:0] bus_out
 );
     reg [WIDTH-1:0] memory [0:MEM_SIZE];
-    // reg [WIDTH-1:0] value;
+    // reg [WIDTH-1:0] value = 0;
+
 
     wire write_enable = load_main | bus_dir;
 
@@ -43,13 +43,20 @@ module mem #(
     end
 
     // always @(posedge clk) begin
+    //     value <= memory[addr_in];
+    // end
+
+    // always @(posedge clk) begin
     //     if(write_enable)
     //         value <= memory[addr_in];
     // end
 
-    assign bus_out = memory[addr_in];
+    // assign bus_out = memory[addr_in];
+    assign bus_out = !bus_dir ? main_in : memory[addr_in];
 
     assign main_out = !bus_dir ? main_in : memory[addr_in];
+    // assign main_out = !bus_dir ? main_in : value;
+
     assign main_en = bus_dir & !assert_main;
 
 endmodule

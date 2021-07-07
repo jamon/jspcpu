@@ -95,12 +95,12 @@ module pipeline_stage2 #(
     assign di_inc = spsidi_inc_select == 2'h3 ? 0 : 1;                
 
     assign mem_ack              = addr_select == 3'h0 ? 0 : 1;
-    assign pcra0_assert_addr    = addr_select == 3'h0 ? 0 : 1;
-    assign pcra1_assert_addr    = addr_select == 3'h0 ? 0 : 1;
-    assign sp_assert_addr       = addr_select == 3'h0 ? 0 : 1;
-    assign si_assert_addr       = addr_select == 3'h0 ? 0 : 1;
-    assign di_assert_addr       = addr_select == 3'h0 ? 0 : 1;
-    assign tx_assert_addr       = addr_select == 3'h0 ? 0 : 1;
+    assign pcra0_assert_addr    = addr_select == 3'h1 ? 0 : 1;
+    assign pcra1_assert_addr    = addr_select == 3'h2 ? 0 : 1;
+    assign sp_assert_addr       = addr_select == 3'h3 ? 0 : 1;
+    assign si_assert_addr       = addr_select == 3'h4 ? 0 : 1;
+    assign di_assert_addr       = addr_select == 3'h5 ? 0 : 1;
+    assign tx_assert_addr       = addr_select == 3'h6 ? 0 : 1;
 
     assign bus_request_out        = controls[13];
     assign pcra_flip_out          = controls[14];
