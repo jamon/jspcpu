@@ -36,8 +36,8 @@ module pipeline_stage1 #(
         // controls = 0;
         //$readmemh("/home/jamon/code/ecp5/jspcpu/control/pipeline-stage1-rom1.mem", rom1);
         //$readmemh("/home/jamon/code/ecp5/jspcpu/control/pipeline-stage1-rom2.mem", rom2);
-        $readmemh("C:/users/ms/Documents/code/jspcpu/control/pipeline-stage1-rom1.mem", rom1);
-        $readmemh("C:/users/ms/Documents/code/jspcpu/control/pipeline-stage1-rom2.mem", rom2);
+        $readmemh("control/pipeline-stage1-rom1.mem", rom1);
+        $readmemh("control/pipeline-stage1-rom2.mem", rom2);
         
     end
   

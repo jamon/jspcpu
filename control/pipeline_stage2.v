@@ -33,8 +33,8 @@ module pipeline_stage2 #(
 
     initial begin
         // controls = 0;
-        $readmemh("C:/users/ms/Documents/code/jspcpu/control/pipeline-stage2-rom1.mem", rom1);
-        $readmemh("C:/users/ms/Documents/code//jspcpu/control/pipeline-stage2-rom2.mem", rom2);
+        $readmemh("control/pipeline-stage2-rom1.mem", rom1);
+        $readmemh("control/pipeline-stage2-rom2.mem", rom2);
     end
 
     wire [14:0] addr = {flag_reset, flag_pcraflip, flag_lcarry, flag_acarry, flag_zero, flag_sign, flag_overflow, instruction};
