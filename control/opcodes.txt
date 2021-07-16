@@ -55,6 +55,7 @@
 54 inc di
 55 out lcdCommand, a
 56 out lcdData, a
+62 in a, lcdCommand
 64 mov a, si
 65 mov b, si
 66 mov c, si

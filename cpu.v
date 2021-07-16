@@ -11,7 +11,10 @@ module cpu #(
     input [WIDTH_AX-1:0] test_addr_out, test_xfer_out,
     input test_main_en, test_addr_en, test_xfer_en,
 
-    output [WIDTH_MAIN-1:0] mem_out
+    output dev9_assert_main, dev10_assert_main, dev11_assert_main, dev12_assert_main, dev13_assert_main, dev14_assert_main, 
+    output dev9_load_main, dev10_load_main, dev11_load_main, dev12_load_main, dev13_load_main, dev14_load_main,
+    output [WIDTH_MAIN-1:0] mem_out,
+    output [WIDTH_MAIN-1:0] main_out
 );
     // stage 0 - individual
     wire pcra0_inc;
@@ -51,8 +54,8 @@ module cpu #(
 
     // stage 2 - individual
     // verilator lint_off UNUSED
-    wire a_assert_main, b_assert_main, c_assert_main, d_assert_main, const_assert_main, xfer_assertlow_main, xfer_asserthigh_main, alu_assert_main, dev9_assert_main, dev10_assert_main, dev11_assert_main, dev12_assert_main, dev13_assert_main, dev14_assert_main, mem_assert_main;
-    wire a_load_main, b_load_main, c_load_main, d_load_main, const_load_main, xfer_loadlow_main, xfer_loadhigh_main, alu_load_main, dev9_load_main, dev10_load_main, dev11_load_main, dev12_load_main, dev13_load_main, dev14_load_main, mem_load_main, mem_dir;
+    wire a_assert_main, b_assert_main, c_assert_main, d_assert_main, const_assert_main, xfer_assertlow_main, xfer_asserthigh_main, alu_assert_main, mem_assert_main;
+    wire a_load_main, b_load_main, c_load_main, d_load_main, const_load_main, xfer_loadlow_main, xfer_loadhigh_main, alu_load_main, mem_load_main, mem_dir;
     wire sp_inc, si_inc, di_inc;
     wire mem_ack, pcra0_assert_addr, pcra1_assert_addr, sp_assert_addr, si_assert_addr, di_assert_addr, xfer_assert_addr;
     wire mem_ack;
@@ -273,7 +276,8 @@ module cpu #(
 		.mem_load_main(mem_load_main),
 
 		// mem bus
-		.mem_out(mem_out)
+		.mem_out(mem_out),
+        .main_out(main_out)
 
     );
 endmodule

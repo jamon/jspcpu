@@ -48,11 +48,11 @@ void reset_cpu() {
     dut->reset = 0;
 }
 void test_simple() {
-    clear_mem();
-    dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[0] = 0x00;   // NOP
-    dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[1] = 0x01;   // LD A, #
-    dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[2] = 255;    // 255   
-    dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[3] = 0x07;   // MOV A, B
+    // clear_mem();
+    // dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[0] = 0x00;   // NOP
+    // dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[1] = 0x01;   // LD A, #
+    // dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[2] = 255;    // 255   
+    // dut->cpu__DOT__core__DOT__mem__DOT__ram__DOT__store[3] = 0x07;   // MOV A, B
     test_init();
     reset_cpu();
 
@@ -110,12 +110,12 @@ int main(int argc, char** argv, char** env) {
     test_step_clk(0);
 
     // test_simple();
-    test_mem_reg_bus_alu();
+    // test_mem_reg_bus_alu();
 
     // test_control(0x00);
     // test_control(0x01);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 500; i++) {
         test_step_clk(0);
         test_step_clk(1);
     }
